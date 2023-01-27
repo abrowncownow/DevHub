@@ -1,4 +1,4 @@
-const { Schema } = require('mongoose');
+const { Schema, model } = require('mongoose');
 
 const projectSchema = new Schema({
   projectName: {
@@ -18,4 +18,9 @@ const projectSchema = new Schema({
   },
 });
 
-module.exports = projectSchema;
+
+
+//I needed this to test, this needs to be changed for final build
+const Project = model('Project', projectSchema);
+
+module.exports = Project;

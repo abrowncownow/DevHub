@@ -10,6 +10,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import store from './utils/store';
 import Home from './pages/home';
+import CreateProject from './pages/createProject';
 
 
 // Construct our main GraphQL API endpoint
@@ -49,12 +50,10 @@ function App() {
                 element={<Home/>}
               />
               {
-              /*
               <Route
-                path='/something'
-                element= {}
+                path='/create'
+                element= {<CreateProject/>}
               />
-              */
               //This is all Routes
               }
               <Route

@@ -16,6 +16,7 @@
     "concurrently": "^7.6.0"
   },
   "dependencies": {
+    "dotenv": "^16.0.3",
     "if-env": "^1.0.4"
   },
   "repository": {
