@@ -9,7 +9,7 @@ import { setContext } from '@apollo/client/link/context';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import store from './utils/store';
-import Home from './pages/home';
+import Home from './pages/Home';
 import CreateProject from './pages/createProject';
 
 
