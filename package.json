@@ -16,6 +16,7 @@
     "concurrently": "^7.6.0"
   },
   "dependencies": {
+    "bson": "^4.7.2",
     "dotenv": "^16.0.3",
     "if-env": "^1.0.4"
   },
