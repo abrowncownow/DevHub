@@ -2,6 +2,7 @@ const { gql } = require('apollo-server-express');
 
 //I needed this to test
 const typeDefs = gql`
+
   type User {
     _id: ID
     username: String
