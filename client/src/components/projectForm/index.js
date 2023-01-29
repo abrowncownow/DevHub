@@ -81,7 +81,7 @@ const ProjectForm = () => {
             }
             */
         } else {
-            alert('file in all fields')
+            alert('fill in all fields')
         }
     }
 

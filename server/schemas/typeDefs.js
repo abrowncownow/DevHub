@@ -23,6 +23,11 @@ const typeDefs = gql`
     goFundMe: String
   }
 
+  type Auth {
+    token: ID!
+    user: User
+}
+
   input savedProject {
     projectName: String
     description: String

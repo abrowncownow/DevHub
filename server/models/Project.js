@@ -9,14 +9,14 @@ const projectSchema = new Schema({
     type: String,
     required: true,
   },
-  /*
-  projectId: {
-    type: String,
-    required: true,
-  },*/
   image: {
     type: String,
   },
+  /*
+projectId: {
+  type: String,
+  required: true,
+},*/
   projectCreator: {
     type: String,
     required: true,

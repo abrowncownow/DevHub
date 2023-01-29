@@ -1,3 +1,8 @@
+body {    
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
 #displayImage {
     width: 275px;
     height: 211px;

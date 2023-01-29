@@ -11,6 +11,7 @@ import { Provider } from 'react-redux';
 import store from './utils/store';
 import Home from './pages/Home';
 import CreateProject from './pages/createProject';
+import Navbar from './components/navbar';
 
 
 // Construct our main GraphQL API endpoint
@@ -44,6 +45,7 @@ function App() {
         <Router>
           <div>
             <Provider store={store}>
+              <Navbar />
               <Routes>
               <Route
                 path='/'

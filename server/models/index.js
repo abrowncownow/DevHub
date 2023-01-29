@@ -1,3 +1,3 @@
 const Project = require('./Project');
-
-module.exports = { Project };
+const User = require('./User')
+module.exports = { Project, User };
