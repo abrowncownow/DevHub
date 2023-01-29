@@ -1,35 +1,50 @@
 import React, { useState, useEffect } from "react";
-//import { useMutation, useQuery } from "@apollo/client";
+import { useMutation, useQuery } from "@apollo/client";
 //const ObjectID = require("bson").ObjectID;
-//import Auth from '../utils/auth';
-//import { QUERY_ME } from '../utils/queries';
+import Auth from "../../utils/auth";
+import { QUERY_ME } from "../../utils/queries";
 //import { QUERY_PROJECTS } from '../utils/queries';
 //import { UPDATE_PROJECTS } from '../utils/mutations';
 
 const ProjectForm = () => {
-    const [image, setImage] = useState(null);
-    const [file, setFile] = useState(null);
-    const [title, setTitle] = useState("");
-    const [description, setDescription] = useState("");
+    const [input, setInput] = useState({ image: null, file: null, title: '', description: '' })
+
+    const { title, description, file, image } = input
+
+
+    const { loading, data } = useQuery(QUERY_ME)
+
+
+    let userData;
+    if (data ? true : false) {
+        userData = data?.user || {};
+        console.log(userData)
+    }
 
     /*
-      const { loading, data } = useQuery(QUERY_ME)
-  
-      const [updateProjects] = useMutation(UPDATE_PROJECTS);
-  
-      const [addProject] = useMutation(ADD_PROJECT)
-      */
+    const [updateProjects] = useMutation(UPDATE_PROJECTS);
+ 
+    const [addProject] = useMutation(ADD_PROJECT)
+    */
 
     function onChange(event) {
-        if (event.target.id === "imageInput") {
-            setImage(URL.createObjectURL(event.target.files[0]));
-            setFile(event.target.files[0]);
+        const { name, value } = event.target;
+        if (name === "image") {
+            setInput(
+                {
+                    ...input,
+                    image: URL.createObjectURL(event.target.files[0]),
+                    file: event.target.files[0]
+                }
+            )
         }
-        if (event.target.id === "titleInput") {
-            setTitle(`${event.target.value}`);
-        }
-        if (event.target.id === "descriptionInput") {
-            setDescription(`${event.target.value}`);
+        else {
+            setInput(
+                {
+                    ...input,
+                    [name]: value,
+                }
+            )
         }
     }
 
@@ -87,10 +102,7 @@ const ProjectForm = () => {
 
     useEffect(() => { }, []);
 
-    //const token = Auth.loggedIn() ? Auth.getToken() : null;
-
-    const SignedIn = true;
-    //SignedIn = Auth.loggedIn() ? true : false;
+    const SignedIn = Auth.loggedIn() ? true : false;
     return (
         <div>
             {SignedIn ? (
@@ -101,7 +113,7 @@ const ProjectForm = () => {
                             type="text"
                             value={title}
                             onChange={onChange}
-                            id="titleInput"
+                            name="title"
                             placeholder="Project Title"
                         />
                     </div>
@@ -111,7 +123,7 @@ const ProjectForm = () => {
                                 alt=""
                                 onChange={onChange}
                                 type="file"
-                                id="imageInput"
+                                name="image"
                                 accept="image/png image/jpg"
                             />
                         </div>
@@ -122,7 +134,7 @@ const ProjectForm = () => {
                             type="text"
                             value={description}
                             onChange={onChange}
-                            id="descriptionInput"
+                            name="description"
                             placeholder="Enter a description"
                             cols="33"
                             rows="4"

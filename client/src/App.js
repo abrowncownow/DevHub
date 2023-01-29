@@ -10,8 +10,10 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import store from './utils/store';
 import Home from './pages/Home';
+import Login from './components/login';
 import CreateProject from './pages/createProject';
 import Navbar from './components/navbar';
+import Signup from './components/signup';
 
 
 // Construct our main GraphQL API endpoint
@@ -39,36 +41,39 @@ const client = new ApolloClient({
 });
 
 function App() {
-  {
-    return (
-      <ApolloProvider client={client}>
-        <Router>
-          <div>
-            <Provider store={store}>
-              <Navbar />
-              <Routes>
+  return (
+    <ApolloProvider client={client}>
+      <Router>
+        <div>
+          <Provider store={store}>
+            <Navbar />
+            <Routes>
               <Route
                 path='/'
-                element={<Home/>}
+                element={<Home />}
               />
-              {
+              <Route
+                path='/login'
+                element={<Login />}
+              />
+              <Route
+                path='/signup'
+                element={<Signup />}
+              />
               <Route
                 path='/create'
-                element= {<CreateProject/>}
+                element={<CreateProject />}
               />
-              //This is all Routes
-              }
               <Route
                 path='*'
                 element={<h1>Not Found</h1>}
               />
-              </Routes>
-            </Provider>
-          </div>
-        </Router>
-      </ApolloProvider>
-    );
-  }
+            </Routes>
+          </Provider>
+        </div>
+      </Router>
+    </ApolloProvider>
+  );
 }
 
 export default App;
