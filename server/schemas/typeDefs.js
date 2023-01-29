@@ -1,5 +1,6 @@
 const { gql } = require('apollo-server-express');
 
+//I needed this to test
 const typeDefs = gql`
   type User {
     _id: ID
@@ -10,13 +11,13 @@ const typeDefs = gql`
     saved_projects: [Project]!
   }
 
-  type Project {
+  type Project  {
     _id: ID
-    projectName: String
-    description: String
-    projectId: String
-    image: String
-    projectCreator: User!
+    projectName: String,
+    description: String,
+    projectId: String,
+    image: String,
+    projectCreator: String
     discord: String
     goFundMe: String
   }
@@ -26,31 +27,25 @@ const typeDefs = gql`
     description: String
     projectId: String
     image: String
-    projectCreator: User!
+    projectCreator: String
     discord: String
     goFundMe: String
   }
 
-  type Auth {
-    token: ID!
+  type Query {
+    project: Project
     user: User
   }
 
-  type Query {
-    users: [User]
-    user(username: String!): User
-    project(username: String): [Project]
-    project(projectId: ID!): Project
-  }
-
   type Mutation {
+    login(email: String!, password: String! ): Auth
     addUser(username: String!, email: String!, password: String!): Auth
-    login(email: String!, password: String!): Auth
-    addProject(projectText: String!, projectCreator: String!): Project
-    removeProject(projectId: ID!): Project
+    createProject(projectCreator: String!, projectDescription: String!): Project
+    deleteProject(projectId: ID!): Project
     saveProject(input: savedProject!): User
     removeProject(projectId: ID!): User
   }
+
 `;
 
-module.exports = typeDefs;
+module.exports = typeDefs
