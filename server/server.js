@@ -1,10 +1,10 @@
-/*
 const express = require('express');
 const path = require('path');
 const db = require('./config/connection');
 const { ApolloServer } = require('apollo-server-express');
 const { typeDefs, resolvers } = require('./schemas');
 const { authMiddleware } = require('./utils/auth');
+const generateUploadURL = require('./s3')
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -23,12 +23,10 @@ if (process.env.NODE_ENV === 'production') {
   app.use(express.static(path.join(__dirname, '../client/build')));
 }
 
-//app.use(routes);
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "../client/build/index.html"));
-});
-// Create a new instance of an Apollo server with the GraphQL schema
-
+app.get('/s3url', async (req, res) => {
+  const url = await generateUploadURL()
+  res.json(url)
+})
 
 
 const startApolloServer = async (typeDefs, resolvers) => {
@@ -44,4 +42,4 @@ const startApolloServer = async (typeDefs, resolvers) => {
 };
 
 // Call the async function to start the server
-startApolloServer(typeDefs, resolvers);*/
+startApolloServer(typeDefs, resolvers);

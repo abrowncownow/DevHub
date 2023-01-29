@@ -1,0 +1,7 @@
+#displayImage {
+    width: 275px;
+    height: 211px;
+    background-position: center;
+    background-size: cover;
+    border: 1px solid black;
+}
