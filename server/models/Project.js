@@ -17,9 +17,18 @@ const projectSchema = new Schema({
   image: {
     type: String,
   },
+  projectCreator: {
+    type: String,
+    required: true,
+    trim: true,
+  },
+  discord: {
+    type: String,
+  },
+  goFundMe: {
+    type: String,
+  }
 });
-
-
 
 //I needed this to test, this needs to be changed for final build
 const Project = model('Project', projectSchema);
