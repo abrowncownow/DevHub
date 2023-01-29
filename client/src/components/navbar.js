@@ -1,10 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
-//import SignUpForm from './SignupForm';
-//import LoginForm from './LoginForm';
-//import Auth from "../utils/auth";
-const SignedIn = false;
-//SignedIn = Auth.loggedIn() ? true : false;
+import Auth from "../utils/auth";
+const SignedIn = Auth.loggedIn() ? true : false;
 
 const linkStyle = {
     color: "white",
@@ -45,7 +42,7 @@ const Navbar = () => {
                             <Link style={linkStyle} to="/create">Create Project</Link>
                         </div>
                         <div style={boxStyle}>
-                            <a style={linkStyle} href="/" onClick={() => {/*Auth.logout()*/} }>
+                            <a style={linkStyle} href="/" onClick={() => {Auth.logout()} }>
                                 Logout
                             </a>
                         </div>
