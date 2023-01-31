@@ -7,7 +7,7 @@ import Auth from '../utils/auth';
 function Login() {
     const [input, setInput] = useState({ email: '', password: '' })
     const { email, password } = input
-    const [login, { loginError }] = useMutation(LOGIN);
+    const [login, { error }] = useMutation(LOGIN);
     const onSubmit = async (event) => {
         event.preventDefault();
         
@@ -17,8 +17,9 @@ function Login() {
             });
             const token = response.data.login.token;
             Auth.login(token);
-        } catch (error) {
-            console.log(error);
+        } catch (err) {
+            localStorage.removeItem('id_token');
+            setInput({ email: '', password: '' })
         }
     };
 
@@ -41,6 +42,7 @@ function Login() {
                         placeholder="email"
                         name="email"
                         type="email"
+                        value={email}
                         onChange={onChange}
                     />
                 </div>
@@ -50,10 +52,11 @@ function Login() {
                         placeholder="******"
                         name="password"
                         type="password"
+                        value={password}
                         onChange={onChange}
                     />
                 </div>
-                {loginError ? (
+                {error ? (
                     <div>
                         <p>Login Failed</p>
                     </div>

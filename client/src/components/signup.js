@@ -20,8 +20,9 @@ function Signup() {
               });
               const token = response.data.addUser.token;
               Auth.login(token);
-        } catch (error) {
-            console.log(error);
+        } catch (err) {
+          localStorage.removeItem('id_token');
+          setInput({ username:'', email: '', password: '' })
         }
         
 
@@ -46,6 +47,7 @@ function Signup() {
                 placeholder="Username"
                 name="username"
                 type="text"
+                value={username}
                 onChange={onChange}
               />
             </div>
@@ -55,6 +57,7 @@ function Signup() {
                 placeholder="youremail@test.com"
                 name="email"
                 type="email"
+                value={email}
                 onChange={onChange}
               />
             </div>
@@ -64,6 +67,7 @@ function Signup() {
                 placeholder="******"
                 name="password"
                 type="password"
+                value={password}
                 onChange={onChange}
               />
             </div>
