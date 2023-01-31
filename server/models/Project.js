@@ -29,6 +29,7 @@ const projectSchema = new Schema({
   }
 });
 
+
 //I needed this to test, this needs to be changed for final build
 const Project = model('Project', projectSchema);
 
