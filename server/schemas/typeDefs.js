@@ -21,6 +21,7 @@ const typeDefs = gql`
     projectCreator: String
     discord: String
     goFundMe: String
+    createdAt: String
   }
 
   type Auth {
@@ -36,6 +37,7 @@ const typeDefs = gql`
     projectCreator: String
     discord: String
     goFundMe: String
+    createdAt: String
   }
 
   type Query {
