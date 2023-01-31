@@ -6,12 +6,13 @@ import ProjectView from "../components/projectView";
 
 import { QUERY_SINGLE_PROJECT } from '../utils/queries';
 
-const [editMode, toggleEditMode] = useState(false);
+
 
 //data prop
 
 const SingleProject = () => {
 
+  const [editMode, toggleEditMode] = useState(false);
   const { projectId } = useParams();
   const { loading, data } = useQuery(QUERY_SINGLE_PROJECT, {
     variables: {projectId: projectId},
