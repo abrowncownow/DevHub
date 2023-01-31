@@ -16,6 +16,13 @@ const projectSchema = new Schema({
   image: {
     type: String,
   },
+  discord: {
+    type: String,
+  },
+  repo: {
+    type: String,
+  },
 });
+
 
 module.exports = projectSchema;
