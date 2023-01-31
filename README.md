@@ -29,6 +29,14 @@
 ## Usage
 
 ## Technologies Used
+- [@apollo/server](https://www.npmjs.com/package/@apollo/server): npm package
+- [GraphQL](https://graphql.org/)
+- [MongoDB](https://www.mongodb.com/) / [Mongoose](https://mongoosejs.com/)
+- [Express.js](https://expressjs.com/)
+- [REACT](https://reactjs.org/)
+- [Node.js](https://nodejs.org/en/about/)
+- [JSON Web Token](https://jwt.io/)
+- [jwt-decode](https://www.npmjs.com/package/jwt-decode): helps decode JWTs token which are Base64Url encoded.
 
 ## Questions
 Please contact use below for further questions:
