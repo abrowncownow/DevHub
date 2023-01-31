@@ -26,7 +26,12 @@ const projectSchema = new Schema({
   },
   goFundMe: {
     type: String,
-  }
+  },
+  createdAt: {
+    type: Date,
+    default: Date.now,
+    get: (timestamp) => dateFormat(timestamp),
+  },
 });
 
 
