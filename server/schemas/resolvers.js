@@ -12,8 +12,12 @@ const resolvers = {
             }
             throw new AuthenticationError('You need to be logged in!');
         },
-        projects: async () => {
-            return Project.find().populate('projects');
+        newProjects: async () => {
+            return Project.find().sort({ createdAt: -1 });
+        },
+        // Need to double check if this sort params is correct
+        popularProjects: async () => {
+            return Project.find().sort({ stars: 1 });
         },
         user: async function (parent, args, context) {
             if (context.user) {

@@ -17,6 +17,7 @@ export const QUERY_ME = gql`
         discord
         goFundMe
         createdAt
+        stars
       }
       saved_projects {
         _id
@@ -28,22 +29,42 @@ export const QUERY_ME = gql`
         discord
         goFundMe
         createdAt
+        stars
       }
     }
   }
 `;
 
-export const QUERY_PROJECTS = gql`
-  query getProjects {
-    projects {
+export const QUERY_NEW_PROJECTS = gql`
+  query NewProjects {
+    newProjects {
       _id
       projectName
       description
+      projectId
       image
       projectCreator
       discord
       goFundMe
       createdAt
+      stars
+    }
+  }
+`
+
+export const QUERY_POPULAR_PROJECTS = gql`
+  query PopularProjects {
+    popularProjects {
+      _id
+      projectName
+      description
+      projectId
+      image
+      projectCreator
+      discord
+      goFundMe
+      createdAt
+      stars
     }
   }
 `
@@ -54,11 +75,13 @@ export const QUERY_SINGLE_PROJECT = gql`
       _id
       projectName
       description
+      projectId
       image
       projectCreator
       discord
       goFundMe
       createdAt
+      stars
     }
   }
 `

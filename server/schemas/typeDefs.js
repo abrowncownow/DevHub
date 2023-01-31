@@ -22,6 +22,7 @@ const typeDefs = gql`
     discord: String
     goFundMe: String
     createdAt: String
+    stars: String
   }
 
   type Auth {
@@ -38,6 +39,7 @@ const typeDefs = gql`
     discord: String
     goFundMe: String
     createdAt: String
+    stars: String
   }
 
   type Query {
@@ -51,10 +53,13 @@ const typeDefs = gql`
     createProject(
       projectName: String!
       description: String!
+      projectId: String!
       image: String!
       projectCreator: String!
       discord: String!
       goFundMe: String!
+      createdAt: String!
+      stars: String!
     ): Project
     deleteProject(projectId: ID!): Project
     saveProject(input: savedProject!): User
