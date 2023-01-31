@@ -31,6 +31,10 @@ const projectSchema = new Schema({
     type: Date,
     default: Date.now,
   },
+  stars: {
+    type: Number,
+    default: 0,
+  }
 });
 
 

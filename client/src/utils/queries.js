@@ -17,6 +17,7 @@ export const QUERY_ME = gql`
         discord
         goFundMe
         createdAt
+        stars
       }
       saved_projects {
         _id
@@ -28,6 +29,7 @@ export const QUERY_ME = gql`
         discord
         goFundMe
         createdAt
+        stars
       }
     }
   }
@@ -39,11 +41,13 @@ export const QUERY_PROJECTS = gql`
       _id
       projectName
       description
+      projectId
       image
       projectCreator
       discord
       goFundMe
       createdAt
+      stars
     }
   }
 `
@@ -54,6 +58,7 @@ export const QUERY_SINGLE_PROJECT = gql`
       _id
       projectName
       description
+      projectId
       image
       projectCreator
       discord
