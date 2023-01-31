@@ -12,6 +12,9 @@ const resolvers = {
             }
             throw new AuthenticationError('You need to be logged in!');
         },
+        projects: async () => {
+            return Project.find().populate('projects');
+        },
         user: async function (parent, args, context) {
             if (context.user) {
                 return await User.findOne({ _id: context.user._id })

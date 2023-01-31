@@ -14,10 +14,11 @@ const typeDefs = gql`
 
   type Project  {
     _id: ID
-    projectName: String,
-    description: String,
-    projectId: String,
-    image: String,
+    projectName: String
+    description: String
+    projectId: String
+    image: String
+    projectCreator: String
     discord: String
     goFundMe: String
   }
@@ -49,6 +50,7 @@ const typeDefs = gql`
       projectName: String!
       description: String!
       image: String!
+      projectCreator: String!
       discord: String!
       goFundMe: String!
     ): Project
