@@ -2,6 +2,7 @@ const express = require('express');
 const path = require('path');
 const db = require('./config/connection');
 const { ApolloServer } = require('apollo-server-express');
+const { InMemoryLRUCache } = require('@apollo/utils.keyvaluecache');
 const { typeDefs, resolvers } = require('./schemas');
 const { authMiddleware } = require('./utils/auth');
 const generateUploadURL = require('./s3')
@@ -13,6 +14,7 @@ const server = new ApolloServer({
   typeDefs,
   resolvers,
   context: authMiddleware,
+  cache: new InMemoryLRUCache(),
 });
 
 app.use(express.urlencoded({ extended: true }));
