@@ -52,6 +52,23 @@ export const QUERY_NEW_PROJECTS = gql`
   }
 `
 
+export const QUERY_POPULAR_PROJECTS = gql`
+  query PopularProjects {
+    popularProjects {
+      _id
+      projectName
+      description
+      projectId
+      image
+      projectCreator
+      discord
+      goFundMe
+      createdAt
+      stars
+    }
+  }
+`
+
 export const QUERY_SINGLE_PROJECT = gql`
   query getSingleProject($projectId: ID!) {
     project(projectId: $projectId) {

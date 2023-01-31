@@ -15,6 +15,10 @@ const resolvers = {
         newProjects: async () => {
             return Project.find().sort({ createdAt: -1 });
         },
+        // Need to double check if this sort params is correct
+        popularProjects: async () => {
+            return Project.find().sort({ stars: 1 });
+        },
         user: async function (parent, args, context) {
             if (context.user) {
                 return await User.findOne({ _id: context.user._id })
