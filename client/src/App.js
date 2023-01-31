@@ -14,6 +14,7 @@ import Login from './components/login';
 import CreateProject from './pages/createProject';
 import Navbar from './components/navbar';
 import Signup from './components/signup';
+import SingleProject from './pages/singleProject';
 
 
 // Construct our main GraphQL API endpoint
@@ -63,6 +64,10 @@ function App() {
               <Route
                 path='/create'
                 element={<CreateProject />}
+              />
+              <Route
+                path = 'projects/:projectId'
+                element = {<SingleProject />}
               />
               <Route
                 path='*'
