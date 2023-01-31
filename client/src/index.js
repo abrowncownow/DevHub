@@ -14,5 +14,5 @@ root.render(
 
 
 //Set to regester for install and service worker on production builds
-serviceWorkerRegistration.unregister();
+serviceWorkerRegistration.register();
 
