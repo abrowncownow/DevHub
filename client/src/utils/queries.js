@@ -35,9 +35,9 @@ export const QUERY_ME = gql`
   }
 `;
 
-export const QUERY_PROJECTS = gql`
-  query getProjects {
-    projects {
+export const QUERY_NEW_PROJECTS = gql`
+  query NewProjects {
+    newProjects {
       _id
       projectName
       description
@@ -64,6 +64,7 @@ export const QUERY_SINGLE_PROJECT = gql`
       discord
       goFundMe
       createdAt
+      stars
     }
   }
 `
