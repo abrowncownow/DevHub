@@ -12,11 +12,10 @@ const projectSchema = new Schema({
   image: {
     type: String,
   },
-  /*
-projectId: {
-  type: String,
-  required: true,
-},*/
+  projectId: {
+    type: String,
+    required: true,
+  },
   projectCreator: {
     type: String,
     required: true,

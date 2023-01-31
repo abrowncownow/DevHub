@@ -37,6 +37,41 @@ const resolvers = {
             const token = signToken(user);
             return { token, user };
         },
+        createProject: async (parent, args) => {
+            const project = await Project.create(args);
+      
+            await User.findOneAndUpdate(
+              { username: args.username },
+              { $addToSet: { created_projects: project._id } }
+            );
+      
+            return project;
+        },
+        deleteProject: async (parent, args) => {
+            return Project.findOneAndDelete({ _id: args});
+        },
+        saveProject: async (parent, args, context) => {
+            if (!context.user) {
+                throw new AuthenticationError("You need to be logged in!");
+            }
+            const saveP = await User.findOneAndUpdate(
+                { _id: context.user._id },
+                { $addToSet: { saved_projects: args.input } },
+                { new: true }
+            );
+            return saveP;
+        },
+        removeProject: async (parent, args, context) => {
+            if (!context.user) {
+                throw new AuthenticationError("You need to be logged in!");
+            }
+            const removeP = await User.findOneAndUpdate(
+                { _id: context.user._id },
+                { $pull: { saved_projects: { projectId: args.projectId } } },
+                { new: true }
+            );
+            return removeP;
+        }
     },
 }
 
