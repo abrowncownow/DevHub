@@ -203,13 +203,3 @@ const ProjectForm = () => {
 };
 
 export default ProjectForm;
-
-/*
-<input
-alt=""
-onChange={onChange}
-type="file"
-name="image"
-accept="image/png image/jpg"
-title= "image"
-/>*/

@@ -36,9 +36,6 @@ const Navbar = () => {
                             <Link style={linkStyle} to="/">Home</Link>
                         </div>
                         <div style={boxStyle}>
-                            <Link style={linkStyle} to="/dashboard">View Projects</Link>
-                        </div>
-                        <div style={boxStyle}>
                             <Link style={linkStyle} to="/create">Create Project</Link>
                         </div>
                         <div style={boxStyle}>
