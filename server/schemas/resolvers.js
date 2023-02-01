@@ -6,22 +6,23 @@ const { Project, User } = require('../models')
 //I needed this to test
 const resolvers = {
     Query: {
-        project: async function (parent, args, context) {
-            if (context.user) {
-                return await Project.findOne({ _id: context.project._id })
-            }
-            throw new AuthenticationError('You need to be logged in!');
+        projects: async function () {
+            return await Project.find();
         },
+        /*
         newProjects: async () => {
             return Project.find().sort({ createdAt: -1 });
-        },
+        },*/
         // Need to double check if this sort params is correct
+        /*
         popularProjects: async () => {
             return Project.find().sort({ stars: 1 });
-        },
+        },*/
         user: async function (parent, args, context) {
+
             if (context.user) {
-                return await User.findOne({ _id: context.user._id })
+                const user = await User.findOne({ _id: context.user._id })
+                return user
             }
             throw new AuthenticationError('You need to be logged in!');
         },
@@ -44,18 +45,25 @@ const resolvers = {
             const token = signToken(user);
             return { token, user };
         },
-        createProject: async (parent, args) => {
-            const project = await Project.create(args);
-      
-            await User.findOneAndUpdate(
-              { username: args.username },
-              { $addToSet: { created_projects: project._id } }
-            );
-      
-            return project;
+        createProject: async (parent, { project }, context) => {
+            try {
+                const projectResponse = await Project.create(
+                    {
+                        ...project,
+                        createdAt: Date(project.createdAt)
+                    }
+                );
+                await User.findOneAndUpdate(
+                    { _id: context.user._id },
+                    { $addToSet: { created_projects: projectResponse._id } }
+                );
+                return projectResponse;
+            } catch (err) {
+                console.log(err)
+            }
         },
         deleteProject: async (parent, args) => {
-            return Project.findOneAndDelete({ _id: args});
+            return Project.findOneAndDelete({ _id: args });
         },
         saveProject: async (parent, args, context) => {
             if (!context.user) {
