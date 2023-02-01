@@ -117,8 +117,16 @@ const ProjectForm = () => {
                                 [
                                     ...projects, 
                                     {
-                                    ...projectToSave,
-                                    createdAt: Date(projectToSave.createdAt)
+                                    __typename: 'Project',
+                                    _id: projectToSave._id.toString(),
+                                    projectName: projectToSave.projectName,
+                                    description: projectToSave.description,
+                                    image: projectToSave.image,
+                                    projectCreator: projectToSave.projectCreator,
+                                    discord: projectToSave.discord,
+                                    goFundMe: projectToSave.goFundMe,
+                                    createdAt: Date(projectToSave.createdAt),
+                                    stars: 0,
                                     }
                                 ],
                             },

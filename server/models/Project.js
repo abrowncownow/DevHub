@@ -1,3 +1,4 @@
+const { ObjectID } = require('bson');
 const { Schema, model } = require('mongoose');
 
 const projectSchema = new Schema({
@@ -12,24 +13,21 @@ const projectSchema = new Schema({
   image: {
     type: String,
   },
-  projectId: {
-    type: String,
-    required: true,
-  },
   projectCreator: {
-    type: String,
+    type: ObjectID,
     required: true,
     trim: true,
   },
   discord: {
     type: String,
+    default: ''
   },
   goFundMe: {
     type: String,
+    default: ''
   },
   createdAt: {
     type: Date,
-    default: Date.now,
   },
   stars: {
     type: Number,
