@@ -21,3 +21,20 @@ export const LOGIN = gql`
     }
   }
 `;
+
+
+export const CREATE_PROJECT = gql`
+  mutation createProject($project: ProjectInput!) {
+    createProject(project: $project) {
+      _id
+      projectName
+      description
+      image
+      projectCreator
+      discord
+      goFundMe
+      createdAt
+      stars
+    }
+  }
+`

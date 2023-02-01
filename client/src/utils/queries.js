@@ -9,31 +9,31 @@ export const QUERY_ME = gql`
       password
       created_projects {
         _id
-        projectName
-        description
-        projectId
-        image
-        projectCreator
-        discord
-        goFundMe
-        createdAt
-        stars
       }
       saved_projects {
         _id
-        projectName
-        description
-        projectId
-        image
-        projectCreator
-        discord
-        goFundMe
-        createdAt
-        stars
       }
     }
   }
 `;
+
+export const QUERY_PROJECTS = gql `
+  {
+    projects {
+      _id
+      projectName
+      description
+      image
+      projectCreator
+      discord
+      goFundMe
+      createdAt
+      stars
+    }
+  }
+`
+
+
 
 export const QUERY_NEW_PROJECTS = gql`
   query NewProjects {
@@ -41,7 +41,6 @@ export const QUERY_NEW_PROJECTS = gql`
       _id
       projectName
       description
-      projectId
       image
       projectCreator
       discord
@@ -58,7 +57,6 @@ export const QUERY_POPULAR_PROJECTS = gql`
       _id
       projectName
       description
-      projectId
       image
       projectCreator
       discord
@@ -75,7 +73,6 @@ export const QUERY_SINGLE_PROJECT = gql`
       _id
       projectName
       description
-      projectId
       image
       projectCreator
       discord

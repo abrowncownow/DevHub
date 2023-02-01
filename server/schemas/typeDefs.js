@@ -8,21 +8,20 @@ const typeDefs = gql`
     username: String
     email: String
     password: String
-    created_projects: [Project]!
-    saved_projects: [Project]!
+    created_projects: [Project]
+    saved_projects: [Project]
   }
 
   type Project  {
-    _id: ID
-    projectName: String
-    description: String
-    projectId: String
-    image: String
-    projectCreator: String
+    _id: ID!
+    projectName: String!
+    description: String!
+    image: String!
+    projectCreator: ID!
     discord: String
     goFundMe: String
     createdAt: String
-    stars: String
+    stars: Int
   }
 
   type Auth {
@@ -30,20 +29,20 @@ const typeDefs = gql`
     user: User
 }
 
-  input savedProject {
-    projectName: String
-    description: String
-    projectId: String
-    image: String
-    projectCreator: String
+  input ProjectInput {
+    _id: ID!
+    projectName: String!
+    description: String!
+    image: String!
+    projectCreator: ID!
     discord: String
     goFundMe: String
     createdAt: String
-    stars: String
+    stars: Int
   }
 
   type Query {
-    project: Project
+    projects: [Project]
     newProjects: [Project]
     popularProjects: [Project]
     user: User
@@ -52,19 +51,9 @@ const typeDefs = gql`
   type Mutation {
     login(email: String!, password: String! ): Auth
     addUser(username: String!, email: String!, password: String!): Auth
-    createProject(
-      projectName: String!
-      description: String!
-      projectId: String!
-      image: String!
-      projectCreator: String!
-      discord: String!
-      goFundMe: String!
-      createdAt: String!
-      stars: String!
-    ): Project
+    createProject(project: ProjectInput): Project
     deleteProject(projectId: ID!): Project
-    saveProject(input: savedProject!): User
+    saveProject(input: ProjectInput!): User
     removeProject(projectId: ID!): User
   }
 

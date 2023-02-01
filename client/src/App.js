@@ -66,8 +66,8 @@ function App() {
                 element={<CreateProject />}
               />
               <Route
-                path = 'projects/:projectId'
-                element = {<SingleProject />}
+                path='projects/:projectId'
+                element={<SingleProject />}
               />
               <Route
                 path='*'
