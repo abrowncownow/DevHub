@@ -30,9 +30,9 @@ const SingleProject = () => {
 return(
   <div>
   {editMode ? (
-    <ProjectEdit props={project} projectId = {projectId} />
+    <ProjectEdit project={project} projectId = {projectId} />
   ):(
-    <ProjectView props={project} projectId = {projectId} />
+    <ProjectView project={project} projectId = {projectId} />
   )}
   </div>
   );
