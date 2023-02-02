@@ -10,6 +10,9 @@ const ProjectView = (props) => {
   return (
     <div className="container">
       This is project view
+      <h1></h1>
+
+
     </div>
   );
 };
