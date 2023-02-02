@@ -69,7 +69,7 @@ export const QUERY_POPULAR_PROJECTS = gql`
 
 export const QUERY_SINGLE_PROJECT = gql`
   query getSingleProject($projectId: ID!) {
-    project(projectId: $projectId) {
+    projects(projectId: $projectId) {
       _id
       projectName
       description
