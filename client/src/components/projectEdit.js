@@ -8,6 +8,10 @@ const inputStyle = {
   display: "none",
 };
 
+const inputLink = {
+  width: '300px'
+}
+
 const inputButton = {
   backgroundColor: "darkblue",
   borderRadius: "5px",
@@ -20,13 +24,12 @@ const ProjectEdit = ({ project }) => {
     file: null,
     title: project.projectName,
     description: project.description,
+    discord: project.discord,
+    goFundMe: project.goFundMe
 
-    //discord: project.discord,
-    //goFundMe: goFundMe
-    
   });
 
-  const { title, description, file, image } = input;
+  const { title, description, file, image, discord, goFundMe } = input;
 
   const { loading, data } = useQuery(QUERY_ME);
 
@@ -60,7 +63,44 @@ const ProjectEdit = ({ project }) => {
 
   async function onSubmit(event) {
     event.preventDefault();
-    if (title.length !== 0 && description.length !== 0 && image !== null) {
+    
+    const discordLink = discord.split('discord.com')
+        const gofundmeLink = goFundMe.split('gofundme.com')
+
+
+        //Discord Bool
+        let discordBool = false;
+        if(discordLink[0] === 'https://' || discordLink[0] === 'https://www.') {
+            if(discord && discordLink.length === 2) {
+                discordBool = true
+            }
+        }
+        if(discord && !discordLink[0]) {
+            discordBool = true
+        }
+
+        if (!discord) {
+            discordBool = true;
+        }
+
+
+
+        //gofundme Bool
+        let gofundmeBool = false
+        if(gofundmeLink[0] === 'https://' || gofundmeLink[0] === 'https://www.') {
+            if(goFundMe && gofundmeLink.length === 2) {
+                gofundmeBool = true
+            }
+        }
+        if(goFundMe && !gofundmeLink[0]) {
+            gofundmeBool = true
+        }
+
+        if (!goFundMe) {
+            gofundmeBool = true;
+        }
+
+    if (title.length !== 0 && description.length !== 0 && image !== null && discordBool && gofundmeBool) {
       let imageUrl;
       if (image !== project.image) {
         const data = await fetch("/s3url");
@@ -86,15 +126,8 @@ const ProjectEdit = ({ project }) => {
         description: description,
         image: imageUrl,
         projectCreator: userData._id,
-
-        //Set to input Box
-        discord: project.discord,
-        //discord: discord
-
-        //Set to input Box
-        goFundMe: project.goFundMe,
-        //goFundMe: goFundMe
-
+        discord: discord,
+        goFundMe: goFundMe,
         createdAt: `${project.createdAt}`,
         stars: project.stars,
       };
@@ -167,6 +200,7 @@ const ProjectEdit = ({ project }) => {
             <input
               type="text"
               value={title}
+              style={inputLink}
               onChange={onChange}
               name="title"
               placeholder="Project Title"
@@ -200,6 +234,26 @@ const ProjectEdit = ({ project }) => {
               cols="33"
               rows="4"
             ></textarea>
+          </div>
+          <div className="centerContent">
+            <input
+              type="text"
+              value={discord}
+              style={inputLink}
+              onChange={onChange}
+              name="discord"
+              placeholder="Discord"
+            />
+          </div>
+          <div className="centerContent inputLink">
+            <input
+              type="text"
+              value={goFundMe}
+              style={inputLink}
+              onChange={onChange}
+              name="goFundMe"
+              placeholder="GoFundMe"
+            />
           </div>
           <div className="centerContent">
             <button type="submit" className="btn btn-primary">
