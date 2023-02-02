@@ -24,7 +24,7 @@ const Home = () => {
       {projectData ? (
         <div>
           {projectData.map((project) => (
-            <div>
+            <div key={project._id}>
               <Link to={`/projects/${project._id}`}>
                 <img alt="" src={project.image} id="displayImage" />
               </Link>

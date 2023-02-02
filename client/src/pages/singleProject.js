@@ -17,25 +17,29 @@ const SingleProject = () => {
   const { loading, data } = useQuery(QUERY_SINGLE_PROJECT, {
     variables: {projectId: projectId},
   });
-
-  const project = data?.project || {};
-  console.log(projectId);
+  
+  let project;
+  if (data ? true : false){
+  project = data?.project || {};
   console.log(project);
-  if (loading) {
-    return <div>
-      <span class="loader">Load&nbsp;ng</span>
-    </div>;
-  }
+}
 
 return(
   <div>
-  {editMode ? (
-    <ProjectEdit project={project} projectId = {projectId} />
-  ):(
-    <ProjectView project={project} projectId = {projectId} />
-  )}
+    {loading ? (
+      <div>
+      <span className="loader">Load&nbsp;ng</span>
+      </div>
+    ): (
+      <div>
+      {editMode ? (
+        <ProjectEdit project={project} projectId = {projectId} />
+      ):(
+        <ProjectView project={project} projectId = {projectId} />
+      )}
+      </div>)}
   </div>
-  );
+    );
 };
 
 export default SingleProject;

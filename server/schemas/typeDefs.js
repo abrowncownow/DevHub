@@ -42,7 +42,7 @@ const typeDefs = gql`
   }
 
   type Query {
-    project: Project
+    project(projectId: ID!): Project
     projects: [Project]
     newProjects: [Project]
     popularProjects: [Project]
