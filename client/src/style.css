@@ -28,6 +28,7 @@ text-align: center;
 
 .content {
 flex-wrap: wrap;
+text-align: center;
 /*border: 1px solid red;*/
 height: 500px
 }

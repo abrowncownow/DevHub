@@ -38,3 +38,19 @@ export const CREATE_PROJECT = gql`
     }
   }
 `
+
+export const UPDATE_PROJECT = gql`
+  mutation updateProject($project: ProjectInput!) {
+    updateProject(project: $project) {
+      _id
+      projectName
+      description
+      image
+      projectCreator
+      discord
+      goFundMe
+      createdAt
+      stars
+    }
+  }
+`
