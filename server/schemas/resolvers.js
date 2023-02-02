@@ -7,8 +7,7 @@ const { Project, User } = require('../models')
 const resolvers = {
     Query: {
         project: async function (parent, { projectId }, context) {
-                return await Project.findOne({ _id: projectId })
-            throw new AuthenticationError('You need to be logged in!');
+            return await Project.findOne({ _id: projectId })
         },
         projects: async function () {
             return await Project.find();
@@ -50,21 +49,40 @@ const resolvers = {
             return { token, user };
         },
         createProject: async (parent, { project }, context) => {
-            try {
-                const projectResponse = await Project.create(
-                    {
-                        ...project,
-                        createdAt: Date(project.createdAt)
-                    }
-                );
-                await User.findOneAndUpdate(
-                    { _id: context.user._id },
-                    { $addToSet: { created_projects: projectResponse._id } }
-                );
-                return projectResponse;
-            } catch (err) {
-                console.log(err)
+            if (context.user) {
+                try {
+                    const projectResponse = await Project.create(
+                        {
+                            ...project,
+                            createdAt: Date(project.createdAt)
+                        }
+                    );
+                    await User.findOneAndUpdate(
+                        { _id: context.user._id },
+                        { $addToSet: { created_projects: projectResponse._id } }
+                    );
+                    return projectResponse;
+                } catch (err) {
+                    console.log(err)
+                }
             }
+            throw new AuthenticationError('You need to be logged in!');
+        },
+        updateProject: async (parent, { project }, context) => {
+            if (context.user) {
+                try {
+                    const projectResponse = await Project.findByIdAndUpdate({ _id: project._id },
+                        {
+                            ...project,
+                            createdAt: Date(project.createdAt)
+                        }
+                    );
+                    return projectResponse;
+                } catch (err) {
+                    console.log(err)
+                }
+            }
+            throw new AuthenticationError('You need to be logged in!');
         },
         deleteProject: async (parent, args) => {
             return Project.findOneAndDelete({ _id: args });
