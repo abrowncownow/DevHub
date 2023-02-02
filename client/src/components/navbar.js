@@ -2,7 +2,9 @@ import React from "react";
 import { Link } from "react-router-dom";
 import Auth from "../utils/auth";
 const SignedIn = Auth.loggedIn() ? true : false;
-
+if(!SignedIn){
+    localStorage.removeItem('id_token');
+}
 const linkStyle = {
     color: "white",
     textDecoration: 'none'

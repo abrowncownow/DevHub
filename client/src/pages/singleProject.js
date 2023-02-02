@@ -19,7 +19,8 @@ const SingleProject = () => {
   });
 
   const project = data?.project || {};
-
+  console.log(projectId);
+  console.log(project);
   if (loading) {
     return <div>
       <span class="loader">Load&nbsp;ng</span>
@@ -29,9 +30,9 @@ const SingleProject = () => {
 return(
   <div>
   {editMode ? (
-    <ProjectEdit projectId = {projectId} />
+    <ProjectEdit project={project} projectId = {projectId} />
   ):(
-    <ProjectView projectId = {projectId} />
+    <ProjectView project={project} projectId = {projectId} />
   )}
   </div>
   );
