@@ -10,8 +10,10 @@ const ProjectView = ({project, projectId}) => {
   return (
     <div className="container">
       This is project view
-      <h1></h1>
-
+      <h1>{project.projectName}</h1>
+      <div>
+      <h2>{project.description}</h2>
+      </div>
 
     </div>
   );

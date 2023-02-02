@@ -7,9 +7,7 @@ const { Project, User } = require('../models')
 const resolvers = {
     Query: {
         project: async function (parent, { projectId }, context) {
-            if (context.user) {
                 return await Project.findOne({ _id: projectId })
-            }
             throw new AuthenticationError('You need to be logged in!');
         },
         projects: async function () {
