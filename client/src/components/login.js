@@ -10,7 +10,7 @@ function Login() {
     const [login, { error }] = useMutation(LOGIN);
     const onSubmit = async (event) => {
         event.preventDefault();
-        
+
         try {
             const response = await login({
                 variables: { email, password },
