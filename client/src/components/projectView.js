@@ -43,13 +43,21 @@ const ProjectView = ({ project, projectId }) => {
                 <h2>{project.description}</h2>
               </div>
               <div>
-                <Link to={project.discord} target="_blank">
-                  Discord Link
-                </Link>
-                <p> </p>
-                <Link to={project.goFundMe} target="_blank">
-                  GoFundMe Page
-                </Link>
+                {project.discord ? (
+                  <Link to={project.discord} target="_blank">
+                    Discord Link
+                  </Link>
+                ) : (
+                  <p></p>
+                )}
+                  <p> </p>
+                {project.goFundMe ? (
+                  <Link to={project.goFundMe} target="_blank">
+                    GoFundMe Page
+                  </Link>
+                ) : (
+                  <p></p>
+                )}
               </div>
             </div>
           </div>
