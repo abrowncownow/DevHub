@@ -22,15 +22,16 @@ const Home = () => {
   return (
     <div className="container">
       {projectData ? (
-        <div>
+        <ul>
           {projectData.map((project) => (
-            <div key={project._id}>
+            <li key={project._id}>
               <Link to={`/projects/${project._id}`}>
-                <img alt="" src={project.image} id="displayImage" />
+                <img alt="" src={project.image} id="thumbnail" />
+                <p>{project.projectName}</p>
               </Link>
-            </div>
+            </li>
           ))}
-        </div>
+        </ul>
       ) : (
         <div>Loading</div>
       )}
