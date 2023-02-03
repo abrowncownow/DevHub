@@ -101,7 +101,6 @@ const ProjectForm = () => {
             gofundmeBool = true;
         }
 
-        console.log(discordBool)
         if (
             title.length !== 0 &&
             description.length !== 0 &&

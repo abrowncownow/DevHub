@@ -5,38 +5,52 @@ import { useMutation, useQuery } from "@apollo/client";
 import { QUERY_ME, QUERY_PROJECTS } from "../utils/queries";
 const SignedIn = Auth.loggedIn() ? true : false;
 
-const ProjectView = ({project, projectId}) => {
+const ProjectView = ({ project, projectId }) => {
 
-  const { loading, data } = useQuery(QUERY_ME, { 
+  const { loading, data } = useQuery(
+    //Change query for project user
+    QUERY_ME, 
+    //
+    {
     variables: { _id: project.projectCreator },
   });
 
   let username;
-  if (data? true : false) {
-    username = data?.username || {};
+  if (data ? true : false) {
+    let user = data?.user || {};
+    username = user.username
   }
+
 
   return (
     <div>
-      <div className="container">
+      {loading ? (
         <div>
-          <h1>{project.projectName}</h1>
-          <h4>Main Developer: {username}</h4>
-          <img alt="" src={project.image} id="displayImage" />
-          <div>
-            <h2>{project.description}</h2>
-          </div>
-          <div>
-            <Link to={project.discord} target="_blank">
-              Discord Link
-            </Link>
-            <p> </p>
-            <Link to={project.goFundMe} target="_blank">
-              GoFundMe Page
-            </Link>
+          <span className="loader">Load&nbsp;ng</span>
+        </div>
+      ) : (
+        <div key={project._id}>
+          <div className="container">
+            <div>
+              <h1>{project.projectName}</h1>
+              <h4>Main Developer: {username}</h4>
+              <img alt="" src={project.image} id="displayImage" />
+              <div>
+                <h2>{project.description}</h2>
+              </div>
+              <div>
+                <Link to={project.discord} target="_blank">
+                  Discord Link
+                </Link>
+                <p> </p>
+                <Link to={project.goFundMe} target="_blank">
+                  GoFundMe Page
+                </Link>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
+      )}
     </div>
   );
 };
