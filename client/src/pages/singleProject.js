@@ -21,7 +21,7 @@ const SingleProject = () => {
   });
 
   let project;
-  if (data? true : false) {
+  if (data ? true : false) {
     project = data?.project || {};
   }
 
@@ -43,9 +43,8 @@ const SingleProject = () => {
     }
   }
 
-
-  
   function toggleEdit() {
+
     toggleEditMode(!editMode)
   }
 
