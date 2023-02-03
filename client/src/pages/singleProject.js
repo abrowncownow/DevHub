@@ -29,7 +29,7 @@ const SingleProject = () => {
   const { data: user } = useQuery(QUERY_ME);
 
   let userData;
-  if (data && user ? true : false) {
+  if (user ? true : false) {
     userData = user?.user || {};
   }
 
