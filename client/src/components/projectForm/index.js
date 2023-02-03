@@ -10,6 +10,10 @@ const inputStyle = {
     display: "none"
 }
 
+const inputLink = {
+    width: '300px'
+}
+
 const inputButton = {
     backgroundColor: 'darkblue',
     borderRadius: '5px',
@@ -22,9 +26,11 @@ const ProjectForm = () => {
         file: null,
         title: "",
         description: "",
+        discord: "",
+        goFundMe: "",
     });
 
-    const { title, description, file, image } = input;
+    const { title, description, file, image, discord, goFundMe } = input;
 
     const { loading, data } = useQuery(QUERY_ME);
 
@@ -59,11 +65,50 @@ const ProjectForm = () => {
 
     async function onSubmit(event) {
         event.preventDefault();
+        
+        const discordLink = discord.split('discord.com')
+        const gofundmeLink = goFundMe.split('gofundme.com')
+
+        //Discord Bool
+        let discordBool = false;
+        if(discordLink[0] === 'https://' || discordLink[0] === 'https://www.') {
+            if(discord && discordLink.length === 2) {
+                discordBool = true
+            }
+        }
+        if(discord && !discordLink[0]) {
+            discordBool = true
+        }
+
+        if (!discord) {
+            discordBool = true;
+        }
+
+
+
+        //gofundme Bool
+        let gofundmeBool = false
+        if(gofundmeLink[0] === 'https://' || gofundmeLink[0] === 'https://www.') {
+            if(goFundMe && gofundmeLink.length === 2) {
+                gofundmeBool = true
+            }
+        }
+        if(goFundMe && !gofundmeLink[0]) {
+            gofundmeBool = true
+        }
+
+        if (!goFundMe) {
+            gofundmeBool = true;
+        }
+
+        console.log(discordBool)
         if (
             title.length !== 0 &&
             description.length !== 0 &&
             image !== null &&
-            file !== null
+            file !== null && 
+            discordBool &&
+            gofundmeBool
         ) {
             const data = await fetch("/s3url");
             const url = await data.json();
@@ -83,8 +128,8 @@ const ProjectForm = () => {
                 description: description,
                 image: imageUrl,
                 projectCreator: userData._id,
-                discord: "",
-                goFundMe: "",
+                discord: discord,
+                goFundMe: goFundMe,
                 createdAt: `${Date.now()}`,
                 stars: 0,
             };
@@ -93,7 +138,6 @@ const ProjectForm = () => {
             try {
                 await createProject({
                     variables: { project: projectToSave },
-
                     update: (cache) => {
                         const { user } = cache.readQuery({ query: QUERY_ME });
                         const { projects } = cache.readQuery({ query: QUERY_PROJECTS });
@@ -138,6 +182,8 @@ const ProjectForm = () => {
                     file: null,
                     title: "",
                     description: "",
+                    discord: "",
+                    goFundMe: "",
                 });
             } catch (err) {
                 console.log(err);
@@ -159,6 +205,7 @@ const ProjectForm = () => {
                         <input
                             type="text"
                             value={title}
+                            style={inputLink}
                             onChange={onChange}
                             name="title"
                             placeholder="Project Title"
@@ -188,6 +235,26 @@ const ProjectForm = () => {
                             cols="33"
                             rows="4"
                         ></textarea>
+                    </div>
+                    <div className="centerContent">
+                        <input
+                            type="text"
+                            value={discord}
+                            style={inputLink}
+                            onChange={onChange}
+                            name="discord"
+                            placeholder="Discord"
+                        />
+                    </div>
+                    <div className="centerContent">
+                        <input
+                            type="text"
+                            value={goFundMe}
+                            style={inputLink}
+                            onChange={onChange}
+                            name="goFundMe"
+                            placeholder="GoFundMe"
+                        />
                     </div>
                     <div className="centerContent">
                         <button type="submit" className="btn btn-primary">
