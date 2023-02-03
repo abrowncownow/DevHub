@@ -2,23 +2,22 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Auth from "../utils/auth";
 import { useMutation, useQuery } from "@apollo/client";
-import { QUERY_ME, QUERY_PROJECTS } from "../utils/queries";
+import { QUERY_ME, QUERY_PROJECTS, QUERY_USER } from "../utils/queries";
 const SignedIn = Auth.loggedIn() ? true : false;
 
 const ProjectView = ({ project, authEditor, toggleEdit }) => {
 
   const { loading, data } = useQuery(
     //Change query for project user
-    QUERY_ME, 
+    QUERY_USER, 
     //
     {
     variables: { _id: project.projectCreator },
   });
 
-  let username;
+  let user;
   if (data ? true : false) {
-    let user = data?.user || {};
-    username = user.username
+    user = data?.user || {};
   }
 
   const linkStyle = {
@@ -37,7 +36,7 @@ const ProjectView = ({ project, authEditor, toggleEdit }) => {
           <div className="container">
             <div>
               <h1>{project.projectName}</h1>
-              <h4>Main Developer: {username}</h4>
+              <h4>Main Developer: {}</h4>
               <img alt="" src={project.image} id="displayImage" />
               <div>
                 <h2>{project.description}</h2>

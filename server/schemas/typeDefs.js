@@ -47,6 +47,7 @@ const typeDefs = gql`
     newProjects: [Project]
     popularProjects: [Project]
     user: User
+    singleUser(userId: ID!): User
   }
 
   type Mutation {
