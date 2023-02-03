@@ -5,7 +5,7 @@ import { useMutation, useQuery } from "@apollo/client";
 import { QUERY_ME, QUERY_PROJECTS } from "../utils/queries";
 const SignedIn = Auth.loggedIn() ? true : false;
 
-const ProjectView = ({ project, projectId }) => {
+const ProjectView = ({ project, authEditor, toggleEdit }) => {
 
   const { loading, data } = useQuery(
     //Change query for project user
@@ -61,7 +61,9 @@ const ProjectView = ({ project, projectId }) => {
               </div>
             </div>
           </div>
+          {authEditor ? <button onClick={toggleEdit}>Edit Page</button> : <div></div>} 
         </div>
+        
       )}
     </div>
   );
