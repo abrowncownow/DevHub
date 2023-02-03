@@ -31,40 +31,47 @@ function Login() {
         });
     };
 
+    const linkStyle = {
+        color: "white",
+        textDecoration: 'none'
+    }
+
     return (
-        <div>
-            <Link to="/signup">← Go to Signup</Link>
-            <h2>Login</h2>
-            <form onSubmit={onSubmit}>
-                <div>
-                    <label htmlFor="email">Email address:</label>
-                    <input
-                        placeholder="email"
-                        name="email"
-                        type="email"
-                        value={email}
-                        onChange={onChange}
-                    />
-                </div>
-                <div>
-                    <label htmlFor="pwd">Password:</label>
-                    <input
-                        placeholder="******"
-                        name="password"
-                        type="password"
-                        value={password}
-                        onChange={onChange}
-                    />
-                </div>
-                {error ? (
+        <div className="container" style={linkStyle}>
+            <div>
+                <Link to="/signup">← Go to Signup</Link>
+                <h2>Login</h2>
+                <form onSubmit={onSubmit}>
                     <div>
-                        <p>Login Failed</p>
+                        <label htmlFor="email">Email address:</label>
+                        <input
+                            placeholder="email"
+                            name="email"
+                            type="email"
+                            value={email}
+                            onChange={onChange}
+                        />
                     </div>
-                ) : null}
-                <div>
-                    <button type="submit">Submit</button>
-                </div>
-            </form>
+                    <div>
+                        <label htmlFor="pwd">Password:</label>
+                        <input
+                            placeholder="******"
+                            name="password"
+                            type="password"
+                            value={password}
+                            onChange={onChange}
+                        />
+                    </div>
+                    {error ? (
+                        <div>
+                            <p>Login Failed</p>
+                        </div>
+                    ) : null}
+                    <div>
+                        <button type="submit">Submit</button>
+                    </div>
+                </form>
+            </div>
         </div>
     );
 }

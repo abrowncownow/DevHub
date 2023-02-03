@@ -36,45 +36,52 @@ function Signup() {
         });
     };
 
+    const linkStyle = {
+      color: "white",
+      textDecoration: 'none'
+    }
+
     return (
-        <div>
-          <Link to="/login">← Go to Login</Link>
-          <h2>Signup</h2>
-          <form onSubmit={onSubmit}>
-            <div>
-              <label htmlFor="username">Username:</label>
-              <input
-                placeholder="Username"
-                name="username"
-                type="text"
-                value={username}
-                onChange={onChange}
-              />
-            </div>
-            <div>
-              <label htmlFor="email">Email:</label>
-              <input
-                placeholder="youremail@test.com"
-                name="email"
-                type="email"
-                value={email}
-                onChange={onChange}
-              />
-            </div>
-            <div>
-              <label htmlFor="pwd">Password:</label>
-              <input
-                placeholder="******"
-                name="password"
-                type="password"
-                value={password}
-                onChange={onChange}
-              />
-            </div>
-            <div>
-              <button type="submit">Submit</button>
-            </div>
-          </form>
+        <div className="container" style={linkStyle}>
+          <div>
+            <Link to="/login">← Go to Login</Link>
+            <h2>Signup</h2>
+            <form onSubmit={onSubmit}>
+              <div>
+                <label htmlFor="username">Username:</label>
+                <input
+                  placeholder="Username"
+                  name="username"
+                  type="text"
+                  value={username}
+                  onChange={onChange}
+                />
+              </div>
+              <div>
+                <label htmlFor="email">Email:</label>
+                <input
+                  placeholder="youremail@test.com"
+                  name="email"
+                  type="email"
+                  value={email}
+                  onChange={onChange}
+                />
+              </div>
+              <div>
+                <label htmlFor="pwd">Password:</label>
+                <input
+                  placeholder="******"
+                  name="password"
+                  type="password"
+                  value={password}
+                  onChange={onChange}
+                />
+              </div>
+              <div>
+                <button type="submit">Submit</button>
+              </div>
+            </form>
+          </div>
         </div>
       );
     }
