@@ -29,6 +29,9 @@ const resolvers = {
             }
             throw new AuthenticationError('You need to be logged in!');
         },
+        singleUser: async function (parent, { userId }) {
+            return User.findOne({ _id: userId });
+        }
     },
     Mutation: {
         addUser: async function (parent, args) {

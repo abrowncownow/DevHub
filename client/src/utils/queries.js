@@ -17,6 +17,23 @@ export const QUERY_ME = gql`
   }
 `;
 
+export const QUERY_USER = gql`
+  query SingleUser($userId: ID!) {
+    singleUser(userId: $userId) {
+      _id
+      username
+      email
+      password
+      created_projects {
+        _id
+      }
+      saved_projects {
+        _id
+      }
+    }
+  }
+`;
+
 export const QUERY_PROJECTS = gql `
   {
     projects {
@@ -32,8 +49,6 @@ export const QUERY_PROJECTS = gql `
     }
   }
 `
-
-
 
 export const QUERY_NEW_PROJECTS = gql`
   query NewProjects {
