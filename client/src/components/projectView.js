@@ -61,7 +61,7 @@ const ProjectView = ({ project, authEditor, toggleEdit }) => {
               </div>
             </div>
           </div>
-          {authEditor ? <button onClick={toggleEdit}>Edit Page</button> : <div></div>} 
+          {authEditor ? <button className="btn" onClick={toggleEdit}>Edit Page</button> : <div></div>} 
         </div>
         
       )}

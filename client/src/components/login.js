@@ -39,7 +39,7 @@ function Login() {
     return (
         <div className="container" style={linkStyle}>
             <div>
-                <Link to="/signup">← Go to Signup</Link>
+                
                 <h2>Login</h2>
                 <form onSubmit={onSubmit}>
                     <div>
@@ -68,7 +68,8 @@ function Login() {
                         </div>
                     ) : null}
                     <div>
-                        <button type="submit">Submit</button>
+                    <Link to="/signup"><button className="btn">Signup</button></Link>
+                        <button className="btn-success" type="submit">Submit</button>
                     </div>
                 </form>
             </div>
