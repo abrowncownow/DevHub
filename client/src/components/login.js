@@ -69,8 +69,8 @@ function Login() {
                         </div>
                     ) : null}
                     <div>
-                        <Link to="/signup"><button className="btn">Signup</button></Link>
                         <button className="btn-success" type="submit">Submit</button>
+                        <Link to="/signup"><button className="btn">Signup</button></Link>
                     </div>
                 </form>
             </div>

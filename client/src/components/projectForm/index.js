@@ -146,8 +146,15 @@ const ProjectForm = () => {
                                 user: {
                                     ...user,
                                     created_projects: [
+                                        //Test this
                                         ...user.created_projects,
                                         projectToSave._id,
+                                        /*
+                                        {
+                                            __typename: "Projects",
+                                            _id: projectToSave._id
+                                        }*/
+
                                     ],
                                 },
                             },
