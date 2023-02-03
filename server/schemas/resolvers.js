@@ -91,7 +91,6 @@ const resolvers = {
             return Project.findOneAndDelete({ _id: args });
         },
         saveProject: async (parent, { project }, context) => {
-            console.log('here')
             if (context.user) {
                 try {
                     const updateUser = await User.findOneAndUpdate(
@@ -113,7 +112,6 @@ const resolvers = {
 
         },
         unSaveProject: async (parent, { project }, context) => {
-            console.log('here')
             if (context.user) {
                 try {
                     const updateUser = await User.findOneAndUpdate(

@@ -27,7 +27,7 @@ const ProjectView = ({ project, authEditor, toggleEdit }) => {
   let projectCreator;
   if (singleUser ? true : false) {
     projectCreator = singleUser?.singleUser || {};
-    console.log(project)
+    //console.log(project)
   }
 
 
@@ -39,7 +39,7 @@ const ProjectView = ({ project, authEditor, toggleEdit }) => {
     if (checkProjectArr.length > 0) {
       savedProjectBool = true
     }
-    console.log(currUser)
+    //console.log(currUser)
   }
 
 
@@ -72,7 +72,7 @@ const ProjectView = ({ project, authEditor, toggleEdit }) => {
     gofundmeValue = `https://${project.goFundMe}`;
   }
 
-  async function toggleSave(event) {
+  async function toggleSave() {
     const projectToSave = {
       _id: project._id,
       projectName: project.projectName,
@@ -118,13 +118,13 @@ const ProjectView = ({ project, authEditor, toggleEdit }) => {
               ],
             }
           });
-          console.log(user)
-          console.log(currProject)
+          //console.log(user)
+          //console.log(currProject)
         }
       })
     }
   }
-  async function toggleUnSave(event) {
+  async function toggleUnSave() {
     const projectToSave = {
       _id: project._id,
       projectName: project.projectName,
@@ -167,8 +167,8 @@ const ProjectView = ({ project, authEditor, toggleEdit }) => {
               ],
             }
           });
-          console.log(user)
-          console.log(currProject)
+          //console.log(user)
+          //console.log(currProject)
         }
       })
     }
