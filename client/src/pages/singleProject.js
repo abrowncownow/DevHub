@@ -45,8 +45,7 @@ const SingleProject = () => {
 
 
   
-  function toggleEdit(event) {
-    event.preventDefault()
+  function toggleEdit() {
     toggleEditMode(!editMode)
   }
 
@@ -61,13 +60,12 @@ const SingleProject = () => {
       ) : (
         <div>
           {editMode ? (
-            <ProjectEdit project={project} projectId={projectId} />
+            <ProjectEdit project={project} toggleEdit={toggleEdit} />
           ) : (
-            <ProjectView project={project} projectId={projectId} />
+            <ProjectView project={project} toggleEdit={toggleEdit} authEditor={authEditor} />
           )}
         </div>
       )}
-      {authEditor ? <button onClick={toggleEdit}>Edit Page</button> : <div></div>}
     </div>
   );
 };

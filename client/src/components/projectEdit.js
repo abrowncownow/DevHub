@@ -18,7 +18,7 @@ const inputButton = {
   color: "white",
 };
 
-const ProjectEdit = ({ project }) => {
+const ProjectEdit = ({ project, toggleEdit }) => {
   const [input, setInput] = useState({
     image: project.image,
     file: null,
@@ -178,6 +178,7 @@ const ProjectEdit = ({ project }) => {
                 ],
               },
             });
+            toggleEdit();
           },
         });
       } catch (err) {
@@ -256,11 +257,14 @@ const ProjectEdit = ({ project }) => {
             />
           </div>
           <div className="centerContent">
+            <button onClick={toggleEdit}>Cancel</button>
             <button type="submit" className="btn btn-primary">
               Update
             </button>
+            
           </div>
         </form>
+        
       ) : (
         <h2>Sign in to create a project</h2>
       )}
