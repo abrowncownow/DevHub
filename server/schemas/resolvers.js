@@ -90,16 +90,47 @@ const resolvers = {
         deleteProject: async (parent, args) => {
             return Project.findOneAndDelete({ _id: args });
         },
-        saveProject: async (parent, args, context) => {
-            if (!context.user) {
-                throw new AuthenticationError("You need to be logged in!");
+        saveProject: async (parent, { project }, context) => {
+            if (context.user) {
+                try {
+                    const updateUser = await User.findOneAndUpdate(
+                        { _id: context.user._id },
+                        { $addToSet: { saved_projects: project._id } },
+                    );
+
+                    let setStars = project.stars + 1;
+                    const updateProject = await Project.findByIdAndUpdate(
+                        { _id: project._id },
+                        { $set: { stars: setStars } }
+                    )
+                    return updateProject
+                } catch (err) {
+                    console.log(err)
+                }
             }
-            const saveP = await User.findOneAndUpdate(
-                { _id: context.user._id },
-                { $addToSet: { saved_projects: args.input } },
-                { new: true }
-            );
-            return saveP;
+            throw new AuthenticationError("You need to be logged in!");
+
+        },
+        unSaveProject: async (parent, { project }, context) => {
+            if (context.user) {
+                try {
+                    const updateUser = await User.findOneAndUpdate(
+                        { _id: context.user._id },
+                        { $pull: { saved_projects: project._id } },
+                    );
+
+                    let setStars = project.stars - 1;
+                    const updateProject = await Project.findByIdAndUpdate(
+                        { _id: project._id },
+                        { $set: { stars: setStars } }
+                    )
+                    return updateProject
+                } catch (err) {
+                    console.log(err)
+                }
+            }
+            throw new AuthenticationError("You need to be logged in!");
+
         },
         removeProject: async (parent, args, context) => {
             if (!context.user) {

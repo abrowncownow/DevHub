@@ -56,7 +56,8 @@ const typeDefs = gql`
     createProject(project: ProjectInput): Project
     updateProject(project: ProjectInput): Project
     deleteProject(projectId: ID!): Project
-    saveProject(input: ProjectInput!): User
+    saveProject(project: ProjectInput): Project
+    unSaveProject(project: ProjectInput): Project
     removeProject(projectId: ID!): User
   }
 

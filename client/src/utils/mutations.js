@@ -54,3 +54,35 @@ export const UPDATE_PROJECT = gql`
     }
   }
 `
+
+export const SAVE_PROJECT = gql`
+  mutation saveProject($project: ProjectInput!) {
+    saveProject(project: $project) {
+      _id
+      projectName
+      description
+      image
+      projectCreator
+      discord
+      goFundMe
+      createdAt
+      stars
+    }
+  }
+`
+
+export const UNSAVE_PROJECT = gql`
+  mutation unSaveProject($project: ProjectInput!) {
+    unSaveProject(project: $project) {
+      _id
+      projectName
+      description
+      image
+      projectCreator
+      discord
+      goFundMe
+      createdAt
+      stars
+    }
+  }
+`

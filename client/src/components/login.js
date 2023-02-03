@@ -8,6 +8,7 @@ function Login() {
     const [input, setInput] = useState({ email: '', password: '' })
     const { email, password } = input
     const [login, { error }] = useMutation(LOGIN);
+    
     const onSubmit = async (event) => {
         event.preventDefault();
 
@@ -68,8 +69,8 @@ function Login() {
                         </div>
                     ) : null}
                     <div>
-                    <Link to="/signup"><button className="btn">Signup</button></Link>
                         <button className="btn-success" type="submit">Submit</button>
+                        <Link to="/signup"><button className="btn">Signup</button></Link>
                     </div>
                 </form>
             </div>
