@@ -193,7 +193,7 @@ const ProjectEdit = ({ project, toggleEdit }) => {
 
   const SignedIn = Auth.loggedIn() ? true : false;
   return (
-    <div>
+    <div className="container">
       {SignedIn ? (
         <form onSubmit={onSubmit} className="content">
           <h1>Project</h1>
