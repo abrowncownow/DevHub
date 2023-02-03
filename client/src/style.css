@@ -1,6 +1,16 @@
+:root{
+  --lis: #F0EFE8;
+  --lac: #818492;
+  --mbc: #A08A8C;
+  --dac: #6F7D84;
+  --das: #1A1516;
+ }
+
+
 body {    
   margin: 0 !important;
   padding: 0 !important;
+  font-family: 'Montserrat', sans-serif;
 }
 
 #displayImage {
@@ -11,6 +21,32 @@ body {
   border: 1px solid black;
 }
 
+#thumbnail {
+  width: 100px;
+  height: 78px;
+  background-position: center;
+  background-size: cover;
+  border: 1px solid black;
+  -webkit-border-radius: 25px;
+  border-radius: 10px;
+  float: left;
+}
+
+.dangerBtn{
+  background-color: rgb(244, 67, 54);
+  border: none;
+  border-radius: 3px;
+  position: relative;
+  padding: 12px 30px;
+  margin: 10px 1px;
+  color: var(--lis);
+  font-size: 12px;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0;
+  will-change: box-shadow, transform;
+  transition: box-shadow 0.2s cubic-bezier(0.4, 0, 1, 1), background-color 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
 
 .container {
 text-align: center;
@@ -18,7 +54,6 @@ width: 100%;
 display: flex;
 flex-wrap: wrap;
 justify-content: center;
-height: 500px
 }
 
 .centerContent {
@@ -74,6 +109,22 @@ transition: .20s ease-in;
   background: red;
   box-sizing: border-box;
   animation: animloader 1s linear infinite alternate;
+}
+body{
+  background: var(--das);
+
+}
+
+ul {
+  background: var(--lis);
+  padding: 5px;
+  margin: 5px;
+  border-radius: 10px;
+}
+
+li {
+  padding: 0;
+  list-style-type: none;
 }
 
 @keyframes animloader {

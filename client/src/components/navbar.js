@@ -13,17 +13,18 @@ const linkStyle = {
 const boxStyle = {
     border: "1px black",
     padding: "10px",
-    color: 'white'
+    color: '#F0EFE8'
 };
 
 const sectionStyle = {
     width: '100%',
     display: "flex",
-    fontFamily: "helvetica",
+    fontFamily: 'Montserrat',
+    fontWeight: '400',
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: 'darkblue',
+    backgroundColor: '#A08A8C',
     height: '75px',
     margin: '0'
 };
@@ -31,7 +32,7 @@ const sectionStyle = {
 const Navbar = () => {
     function showNavigation() {
         return (
-            <div>
+            <nav>
                 {SignedIn ? (
                     <section style={sectionStyle}>
                         <div style={boxStyle}>
@@ -59,7 +60,7 @@ const Navbar = () => {
                         </div>
                     </section>
                 )}
-            </div>
+            </nav>
         );
     }
     return <nav >{
