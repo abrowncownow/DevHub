@@ -21,6 +21,10 @@ const ProjectView = ({ project, projectId }) => {
     username = user.username
   }
 
+  const linkStyle = {
+    color: "white",
+    textDecoration: 'none'
+  }
 
   return (
     <div>
@@ -29,7 +33,7 @@ const ProjectView = ({ project, projectId }) => {
           <span className="loader">Load&nbsp;ng</span>
         </div>
       ) : (
-        <div key={project._id}>
+        <div key={project._id} style={linkStyle}>
           <div className="container">
             <div>
               <h1>{project.projectName}</h1>
