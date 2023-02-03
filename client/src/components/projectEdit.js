@@ -257,7 +257,7 @@ const ProjectEdit = ({ project, toggleEdit }) => {
             />
           </div>
           <div className="centerContent">
-            <button onClick={toggleEdit}>Cancel</button>
+            <button className="btn" onClick={toggleEdit}>Cancel</button>
             <button type="submit" className="btn btn-primary">
               Update
             </button>
