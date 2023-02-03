@@ -44,7 +44,6 @@ function Signup() {
   return (
     <div className="container" style={linkStyle}>
       <div>
-        <Link to="/login">← Go to Login</Link>
         <h2>Signup</h2>
         <form onSubmit={onSubmit}>
           <div>
@@ -78,7 +77,8 @@ function Signup() {
             />
           </div>
           <div>
-            <button type="submit">Submit</button>
+          <Link to="/login"><button className="btn">Login Page</button></Link>
+            <button className="btn-success" type="submit">Submit</button>
           </div>
         </form>
       </div>

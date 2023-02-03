@@ -193,7 +193,7 @@ const ProjectEdit = ({ project, toggleEdit }) => {
 
   const SignedIn = Auth.loggedIn() ? true : false;
   return (
-    <div>
+    <div className="container">
       {SignedIn ? (
         <form onSubmit={onSubmit} className="content">
           <h1>Project</h1>
@@ -257,7 +257,7 @@ const ProjectEdit = ({ project, toggleEdit }) => {
             />
           </div>
           <div className="centerContent">
-            <button onClick={toggleEdit}>Cancel</button>
+            <button className="btn" onClick={toggleEdit}>Cancel</button>
             <button type="submit" className="btn btn-primary">
               Update
             </button>

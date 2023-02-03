@@ -13,6 +13,19 @@ body {
   font-family: 'Montserrat', sans-serif;
 }
 
+
+label {
+  width:180px;
+  clear:left;
+  text-align:right;
+  padding-right:10px;
+}
+
+input, label {
+  float:left;
+  margin-bottom: 7px;
+}
+
 #displayImage {
   width: 275px;
   height: 211px;
@@ -30,6 +43,38 @@ body {
   -webkit-border-radius: 25px;
   border-radius: 10px;
   float: left;
+}
+
+.btn{
+  
+  border: none;
+  border-radius: 3px;
+  position: relative;
+  padding: 12px 20px;
+  margin: 10px 15px;
+  color: var(--dac);
+  font-size: 12px;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0;
+  will-change: box-shadow, transform;
+  transition: box-shadow 0.2s cubic-bezier(0.4, 0, 1, 1), background-color 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn-success{  
+    border: none;
+    border-radius: 3px;
+    position: relative;
+    padding: 12px 20px;
+    margin: 10px 15px;
+    color: var(--lis);
+    background-color: #65a462;
+    font-size: 12px;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 0;
+    will-change: box-shadow, transform;
+    transition: box-shadow 0.2s cubic-bezier(0.4, 0, 1, 1), background-color 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .dangerBtn{
@@ -70,6 +115,7 @@ height: 500px;
 
 #imgInput {
 transition: .20s ease-out;
+width: 100%;
 }
 
 
@@ -166,14 +212,3 @@ li {
   }
 }
 
-label {
-  width:180px;
-  clear:left;
-  text-align:right;
-  padding-right:10px;
-}
-
-input, label {
-  float:left;
-  margin-bottom: 7px;
-}
