@@ -9,7 +9,6 @@ const SignedIn = Auth.loggedIn() ? true : false;
 const Home = () => {
   const { loading, data } = useQuery(QUERY_PROJECTS);
 
-
   let projectData;
 
   if (data ? true : false) {
