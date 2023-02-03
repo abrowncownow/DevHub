@@ -27,6 +27,43 @@ const ProjectView = ({ project, authEditor, toggleEdit }) => {
     textDecoration: 'none'
   }
 
+  if (project ? true : false) {
+    console.log(project.goFundMe)
+
+  }
+
+
+
+  //Format discord link
+  const discordLink = project.discord.split('discord.com')
+  let discordValue;
+  if(discordLink[0] === 'https://' || discordLink[0] === 'https://www.') {
+      if(project.discord && discordLink.length === 2) {
+          discordValue = project.discord
+      }
+  }
+  if(project.discord && !discordLink[0]) {
+      discordValue  = `https://${project.discord}`
+  }
+
+
+
+  //Format go fund me link
+  const gofundmeLink = project.goFundMe.split('gofundme.com')
+  let gofundmeValue;
+  if(gofundmeLink[0] === 'https://' || gofundmeLink[0] === 'https://www.') {
+      if(project.goFundMe && gofundmeLink.length === 2) {
+          gofundmeValue = project.goFundMe
+          console.log(1)
+      }
+  }
+  if(project.goFundMe && !gofundmeLink[0]) {
+      gofundmeValue = `https://${project.goFundMe}`
+      console.log(2)
+  }
+
+  console.log(gofundmeLink)
+
   return (
     <div>
       {loading ? (
@@ -45,17 +82,17 @@ const ProjectView = ({ project, authEditor, toggleEdit }) => {
               </div>
               <div>
                 {project.discord ? (
-                  <Link to={project.discord} target="_blank">
+                  <a href={discordValue} target="_blank">
                     Discord Link
-                  </Link>
+                  </a>
                 ) : (
                   <p></p>
                 )}
                   <p> </p>
                 {project.goFundMe ? (
-                  <Link to={project.goFundMe} target="_blank">
+                  <a href={gofundmeValue} target="_blank">
                     GoFundMe Page
-                  </Link>
+                  </a>
                 ) : (
                   <p></p>
                 )}
