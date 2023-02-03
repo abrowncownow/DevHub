@@ -7,17 +7,19 @@ const SignedIn = Auth.loggedIn() ? true : false;
 
 const ProjectView = ({ project, authEditor, toggleEdit }) => {
 
+  const creatorId = project.projectCreator;
   const { loading, data } = useQuery(
     //Change query for project user
-    QUERY_USER, 
-    //
-    {
-    variables: { _id: project.projectCreator },
+    QUERY_USER, {
+    variables: { userId: creatorId },
   });
+
+  // console.log(project.projectCreator);
+
 
   let user;
   if (data ? true : false) {
-    user = data?.user || {};
+    user = data?.singleUser || {};
   }
 
   const linkStyle = {
@@ -36,7 +38,7 @@ const ProjectView = ({ project, authEditor, toggleEdit }) => {
           <div className="container">
             <div>
               <h1>{project.projectName}</h1>
-              <h4>Main Developer: {}</h4>
+              <h4>Main Developer: {user.username}</h4>
               <img alt="" src={project.image} id="displayImage" />
               <div>
                 <h2>{project.description}</h2>
