@@ -47,6 +47,7 @@ const typeDefs = gql`
     newProjects: [Project]
     popularProjects: [Project]
     user: User
+    users: [User]
     singleUser(userId: ID!): User
   }
 
@@ -55,10 +56,9 @@ const typeDefs = gql`
     addUser(username: String!, email: String!, password: String!): Auth
     createProject(project: ProjectInput): Project
     updateProject(project: ProjectInput): Project
-    deleteProject(projectId: ID!): Project
     saveProject(project: ProjectInput): Project
     unSaveProject(project: ProjectInput): Project
-    removeProject(projectId: ID!): User
+    deleteProject(projectId: ID!): Project
   }
 
 `;

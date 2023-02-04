@@ -3,8 +3,8 @@ import { useMutation, useQuery } from "@apollo/client";
 import Auth from "../../utils/auth";
 import { QUERY_ME, QUERY_PROJECTS } from "../../utils/queries";
 import { CREATE_PROJECT } from "../../utils/mutations";
-import mongoose from "mongoose";
-
+import * as mongoose from "mongoose";
+import { useNavigate } from "react-router-dom";
 
 const inputStyle = {
     display: "none"
@@ -21,6 +21,7 @@ const inputButton = {
 }
 
 const ProjectForm = () => {
+    const navigate = useNavigate();
     const [input, setInput] = useState({
         image: null,
         file: null,
@@ -65,18 +66,18 @@ const ProjectForm = () => {
 
     async function onSubmit(event) {
         event.preventDefault();
-        
+
         const discordLink = discord.split('discord.com')
         const gofundmeLink = goFundMe.split('gofundme.com')
 
         //Discord Bool
         let discordBool = false;
-        if(discordLink[0] === 'https://' || discordLink[0] === 'https://www.') {
-            if(discord && discordLink.length === 2) {
+        if (discordLink[0] === 'https://' || discordLink[0] === 'https://www.') {
+            if (discord && discordLink.length === 2) {
                 discordBool = true
             }
         }
-        if(discord && !discordLink[0]) {
+        if (discord && !discordLink[0]) {
             discordBool = true
         }
 
@@ -88,12 +89,12 @@ const ProjectForm = () => {
 
         //gofundme Bool
         let gofundmeBool = false
-        if(gofundmeLink[0] === 'https://' || gofundmeLink[0] === 'https://www.') {
-            if(goFundMe && gofundmeLink.length === 2) {
+        if (gofundmeLink[0] === 'https://' || gofundmeLink[0] === 'https://www.') {
+            if (goFundMe && gofundmeLink.length === 2) {
                 gofundmeBool = true
             }
         }
-        if(goFundMe && !gofundmeLink[0]) {
+        if (goFundMe && !gofundmeLink[0]) {
             gofundmeBool = true
         }
 
@@ -105,7 +106,7 @@ const ProjectForm = () => {
             title.length !== 0 &&
             description.length !== 0 &&
             image !== null &&
-            file !== null && 
+            file !== null &&
             discordBool &&
             gofundmeBool
         ) {
@@ -122,7 +123,7 @@ const ProjectForm = () => {
             console.log(imageUrl);
 
             const projectToSave = {
-                _id: new mongoose.Types.ObjectId(),
+                _id: new mongoose.Types.ObjectId().valueOf(),
                 projectName: title,
                 description: description,
                 image: imageUrl,
@@ -132,7 +133,6 @@ const ProjectForm = () => {
                 createdAt: `${Date.now()}`,
                 stars: 0,
             };
-
 
             try {
                 await createProject({
@@ -146,51 +146,42 @@ const ProjectForm = () => {
                                 user: {
                                     ...user,
                                     created_projects: [
-                                        //Test this
                                         ...user.created_projects,
-                                        projectToSave._id,
-                                        /*
                                         {
                                             __typename: "Projects",
                                             _id: projectToSave._id
-                                        }*/
+                                        }
 
                                     ],
                                 },
                             },
                         });
 
+
                         cache.writeQuery({
                             query: QUERY_PROJECTS,
                             data: {
-                                projects: 
-                                [
-                                    ...projects, 
-                                    {
-                                    __typename: 'Project',
-                                    _id: projectToSave._id.toString(),
-                                    projectName: projectToSave.projectName,
-                                    description: projectToSave.description,
-                                    image: projectToSave.image,
-                                    projectCreator: projectToSave.projectCreator,
-                                    discord: projectToSave.discord,
-                                    goFundMe: projectToSave.goFundMe,
-                                    createdAt: Date(projectToSave.createdAt),
-                                    stars: 0,
-                                    }
-                                ],
+                                projects:
+                                    [
+                                        {
+                                            __typename: 'Project',
+                                            _id: projectToSave._id,
+                                            projectName: projectToSave.projectName,
+                                            description: projectToSave.description,
+                                            image: projectToSave.image,
+                                            projectCreator: projectToSave.projectCreator,
+                                            discord: projectToSave.discord,
+                                            goFundMe: projectToSave.goFundMe,
+                                            createdAt: Date(projectToSave.createdAt),
+                                            stars: 0,
+                                        },
+                                        ...projects,
+                                    ],
                             },
                         });
                     },
                 });
-                setInput({
-                    image: null,
-                    file: null,
-                    title: "",
-                    description: "",
-                    discord: "",
-                    goFundMe: "",
-                });
+                navigate('/')
             } catch (err) {
                 console.log(err);
             }
@@ -219,14 +210,14 @@ const ProjectForm = () => {
                     </div>
                     <div className="row centerContent">
                         <div className="centerContent">
-                            <input                                 
+                            <input
                                 alt=""
                                 onChange={onChange}
                                 type="file"
                                 name="image"
                                 id="imgInput"
                                 accept="image/png image/jpg"
-                                title= "image" style={inputStyle}/>
+                                title="image" style={inputStyle} />
                             <label id="imgInput" htmlFor="imgInput" style={inputButton}>Click me to upload image</label>
                         </div>
                         <img alt="" src={image} id="displayImage" />

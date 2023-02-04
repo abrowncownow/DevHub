@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { useMutation, useQuery } from "@apollo/client";
 import Auth from "../utils/auth";
-import { QUERY_ME, QUERY_PROJECTS } from "../utils/queries";
-import { UPDATE_PROJECT } from "../utils/mutations";
+import { QUERY_ME, QUERY_PROJECTS, QUERY_USER, QUERY_USERS } from "../utils/queries";
+import { UPDATE_PROJECT, DELETE_PROJECT } from "../utils/mutations";
+import { useNavigate } from "react-router-dom";
 
 const inputStyle = {
   display: "none",
@@ -19,6 +20,7 @@ const inputButton = {
 };
 
 const ProjectEdit = ({ project, toggleEdit }) => {
+  const navigate = useNavigate();
   const [input, setInput] = useState({
     image: project.image,
     file: null,
@@ -29,6 +31,9 @@ const ProjectEdit = ({ project, toggleEdit }) => {
 
   });
 
+
+  const creatorId = project.projectCreator;
+
   const { title, description, file, image, discord, goFundMe } = input;
 
   const { loading, data } = useQuery(QUERY_ME);
@@ -36,6 +41,8 @@ const ProjectEdit = ({ project, toggleEdit }) => {
   useQuery(QUERY_PROJECTS);
 
   const [updateProject] = useMutation(UPDATE_PROJECT);
+
+  const [deleteProject] = useMutation(DELETE_PROJECT)
 
   let userData;
 
@@ -63,42 +70,42 @@ const ProjectEdit = ({ project, toggleEdit }) => {
 
   async function onSubmit(event) {
     event.preventDefault();
-    
+
     const discordLink = discord.split('discord.com')
-        const gofundmeLink = goFundMe.split('gofundme.com')
+    const gofundmeLink = goFundMe.split('gofundme.com')
 
 
-        //Discord Bool
-        let discordBool = false;
-        if(discordLink[0] === 'https://' || discordLink[0] === 'https://www.') {
-            if(discord && discordLink.length === 2) {
-                discordBool = true
-            }
-        }
-        if(discord && !discordLink[0]) {
-            discordBool = true
-        }
+    //Discord Bool
+    let discordBool = false;
+    if (discordLink[0] === 'https://' || discordLink[0] === 'https://www.') {
+      if (discord && discordLink.length === 2) {
+        discordBool = true
+      }
+    }
+    if (discord && !discordLink[0]) {
+      discordBool = true
+    }
 
-        if (!discord) {
-            discordBool = true;
-        }
+    if (!discord) {
+      discordBool = true;
+    }
 
 
 
-        //gofundme Bool
-        let gofundmeBool = false
-        if(gofundmeLink[0] === 'https://' || gofundmeLink[0] === 'https://www.') {
-            if(goFundMe && gofundmeLink.length === 2) {
-                gofundmeBool = true
-            }
-        }
-        if(goFundMe && !gofundmeLink[0]) {
-            gofundmeBool = true
-        }
+    //gofundme Bool
+    let gofundmeBool = false
+    if (gofundmeLink[0] === 'https://' || gofundmeLink[0] === 'https://www.') {
+      if (goFundMe && gofundmeLink.length === 2) {
+        gofundmeBool = true
+      }
+    }
+    if (goFundMe && !gofundmeLink[0]) {
+      gofundmeBool = true
+    }
 
-        if (!goFundMe) {
-            gofundmeBool = true;
-        }
+    if (!goFundMe) {
+      gofundmeBool = true;
+    }
 
     if (title.length !== 0 && description.length !== 0 && image !== null && discordBool && gofundmeBool) {
       let imageUrl;
@@ -136,27 +143,10 @@ const ProjectEdit = ({ project, toggleEdit }) => {
         await updateProject({
           variables: { project: projectToSave },
           update: (cache) => {
-            //const { user } = cache.readQuery({ query: QUERY_ME });
-
             const { projects } = cache.readQuery({ query: QUERY_PROJECTS });
             const updatedProjectCache = projects.filter(
               (singleProject) => singleProject._id !== projectToSave._id
             );
-
-            /*
-            cache.writeQuery({
-              query: QUERY_ME,
-              data: {
-                user: {
-                  ...user,
-                  created_projects: [
-                    ...user.created_projects,
-                    projectToSave._id,
-                  ],
-                },
-              },
-            });
-            */
 
             cache.writeQuery({
               query: QUERY_PROJECTS,
@@ -187,6 +177,63 @@ const ProjectEdit = ({ project, toggleEdit }) => {
     } else {
       alert("fill in all fields");
     }
+  }
+
+  async function handleDelete() {
+    await deleteProject({
+      variables: { projectId: project._id },
+      update: (cache) => {
+        const { user } = cache.readQuery({ query: QUERY_ME });
+
+        const { projects } = cache.readQuery({ query: QUERY_PROJECTS });
+
+        const upProjectCache = projects.filter((singleProject) => singleProject._id !== project._id);
+
+        const upUserCreatedCache = user.created_projects.filter((singleProject) => {
+          if (singleProject._id !== project._id) {
+            return {
+              __typename: "Projects",
+              _id: singleProject._id
+            }
+          }
+        }
+        );
+        const upUserSavedCache = user.saved_projects.filter((singleProject) => {
+          if(singleProject._id !== project._id) {
+            return {
+              __typename: "Projects",
+              _id: singleProject._id
+            }
+          }
+        });
+        //console.log(upUserCreatedCache)
+        //console.log(upUserSavedCache)
+        //console.log(upProjectCache)
+        cache.writeQuery({
+          query: QUERY_PROJECTS,
+          data: {
+            projects: [
+              ...upProjectCache,
+            ],
+          },
+        });
+        cache.writeQuery({
+          query: QUERY_ME,
+          data: {
+            user: {
+              ...user,
+              created_projects: [
+                ...upUserCreatedCache
+              ],
+              saved_projects: [
+                ...upUserSavedCache
+              ]
+            }
+          },
+        });
+        navigate('/')
+      }
+    })
   }
 
   useEffect(() => { }, []);
@@ -258,13 +305,11 @@ const ProjectEdit = ({ project, toggleEdit }) => {
           </div>
           <div className="centerContent">
             <button className="btn" onClick={toggleEdit}>Cancel</button>
-            <button type="submit" className="btn btn-primary">
-              Update
-            </button>
-            
+            <button type="submit" className="btn btn-primary">Update</button>
+            <button className="btn btn-danger" onClick={handleDelete}>Delete</button>
           </div>
         </form>
-        
+
       ) : (
         <h2>Sign in to create a project</h2>
       )}
