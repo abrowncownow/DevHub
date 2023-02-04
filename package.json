@@ -16,11 +16,10 @@
     "concurrently": "^7.6.0"
   },
   "dependencies": {
-    "bson": "^4.7.2",
     "dotenv": "^16.0.3",
     "if-env": "^1.0.4",
-    "react-bootstrap": "^2.7.0",
-    "mongoose": "^6.1.8"
+    "mongoose": "^6.1.8",
+    "react-bootstrap": "^2.7.0"
   },
   "repository": {
     "type": "git",

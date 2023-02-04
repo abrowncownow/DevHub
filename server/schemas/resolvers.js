@@ -29,6 +29,9 @@ const resolvers = {
             }
             throw new AuthenticationError('You need to be logged in!');
         },
+        users: async function() {
+            return await User.find()
+        },
         singleUser: async function (parent, { userId }) {
             return User.findOne({ _id: userId });
         }
@@ -87,8 +90,19 @@ const resolvers = {
             }
             throw new AuthenticationError('You need to be logged in!');
         },
-        deleteProject: async (parent, args) => {
-            return Project.findOneAndDelete({ _id: args });
+        deleteProject: async (parent, {projectId}, context) => {
+            if (context.user) {
+                try {
+                    const projectResponse = await Project.findOneAndDelete({ _id: projectId });
+                    await User.updateMany({created_projects: { $all: projectId}}, {$pull: {created_projects: { $all: projectId}}})
+                    await User.updateMany({saved_projects: { $all: projectId}}, {$pull: {saved_projects: { $all: projectId}}})
+                    await User.findByIdAndUpdate({_id: context.user._id}, {$pull: {saved_projects: projectId}})
+                    return projectResponse;
+                } catch (err) {
+                    console.log(err)
+                }
+            }
+            throw new AuthenticationError('You need to be logged in!');
         },
         saveProject: async (parent, { project }, context) => {
             if (context.user) {
@@ -132,17 +146,6 @@ const resolvers = {
             throw new AuthenticationError("You need to be logged in!");
 
         },
-        removeProject: async (parent, args, context) => {
-            if (!context.user) {
-                throw new AuthenticationError("You need to be logged in!");
-            }
-            const removeP = await User.findOneAndUpdate(
-                { _id: context.user._id },
-                { $pull: { saved_projects: { projectId: args.projectId } } },
-                { new: true }
-            );
-            return removeP;
-        }
     },
 }
 

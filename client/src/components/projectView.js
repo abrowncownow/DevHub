@@ -7,9 +7,9 @@ import { SAVE_PROJECT, UNSAVE_PROJECT } from "../utils/mutations";
 const SignedIn = Auth.loggedIn() ? true : false;
 
 const ProjectView = ({ project, authEditor, toggleEdit }) => {
+
   const creatorId = project.projectCreator;
   const { loading, data: singleUser } = useQuery(
-    //Change query for project user
     QUERY_USER,
     {
       variables: { userId: creatorId },
@@ -84,6 +84,7 @@ const ProjectView = ({ project, authEditor, toggleEdit }) => {
       createdAt: `${project.createdAt}`,
       stars: project.stars,
     };
+
     let checkProjectArr = currUser.saved_projects.filter((userSavedProject) => project._id === userSavedProject._id)
     let setStars = project.stars + 1;
     if (checkProjectArr.length === 0) {
@@ -235,6 +236,6 @@ const ProjectView = ({ project, authEditor, toggleEdit }) => {
       )}
     </div>
   );
-};
+}
 
 export default ProjectView;
