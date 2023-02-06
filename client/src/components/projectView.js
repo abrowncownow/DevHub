@@ -193,7 +193,7 @@ const ProjectView = ({ project, authEditor, toggleEdit }) => {
               </div>
               <div>
                 {project.discord ? (
-                  <a href={discordValue} target="_blank">
+                  <a href={discordValue} target="_blank" rel="noreferrer">
                     Discord Link
                   </a>
                 ) : (
@@ -201,7 +201,7 @@ const ProjectView = ({ project, authEditor, toggleEdit }) => {
                 )}
                 <p> </p>
                 {project.goFundMe ? (
-                  <a href={gofundmeValue} target="_blank">
+                  <a href={gofundmeValue} target="_blank" rel="noreferrer">
                     GoFundMe Page
                   </a>
                 ) : (

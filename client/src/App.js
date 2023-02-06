@@ -41,11 +41,6 @@ const client = new ApolloClient({
   cache: new InMemoryCache(),
 });
 
-const linkStyle = {
-  color: "white",
-  textDecoration: 'none'
-}
-
 function App() {
   return (
     <ApolloProvider client={client}>
@@ -53,7 +48,7 @@ function App() {
         <div>
           <Provider store={store}>
             <Navbar />
-            <Routes style={linkStyle}>
+            <Routes>
               <Route
                 path='/'
                 element={<Home />}
