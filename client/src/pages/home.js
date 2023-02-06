@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import Auth from "../utils/auth";
 import { useMutation, useQuery } from "@apollo/client";
 import { QUERY_ME, QUERY_PROJECTS } from "../utils/queries";
-import { set } from "mongoose";
 const SignedIn = Auth.loggedIn() ? true : false;
 //comment
 const Home = () => {
