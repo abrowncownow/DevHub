@@ -189,7 +189,7 @@ const ProjectView = ({ project, authEditor, toggleEdit }) => {
               <h4>Main Developer: {projectCreator.username}</h4>
               <img alt="" src={project.image} id="displayImage" />
               <div>
-                <h2>{project.description}</h2>
+                <p>{project.description}</p>
               </div>
               <div>
                 {project.discord ? (
