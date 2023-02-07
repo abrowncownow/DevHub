@@ -27,14 +27,14 @@ const ProjectEdit = ({ project, toggleEdit }) => {
     title: project.projectName,
     description: project.description,
     discord: project.discord,
-    goFundMe: project.goFundMe
+    github: project.github
 
   });
 
 
   const creatorId = project.projectCreator;
 
-  const { title, description, file, image, discord, goFundMe } = input;
+  const { title, description, file, image, discord, github } = input;
 
   const { loading, data } = useQuery(QUERY_ME);
 
@@ -72,7 +72,7 @@ const ProjectEdit = ({ project, toggleEdit }) => {
     event.preventDefault();
 
     const discordLink = discord.split('discord.com')
-    const gofundmeLink = goFundMe.split('gofundme.com')
+    const githubLink = github.split('github.com')
 
 
     //Discord Bool
@@ -92,22 +92,22 @@ const ProjectEdit = ({ project, toggleEdit }) => {
 
 
 
-    //gofundme Bool
-    let gofundmeBool = false
-    if (gofundmeLink[0] === 'https://' || gofundmeLink[0] === 'https://www.') {
-      if (goFundMe && gofundmeLink.length === 2) {
-        gofundmeBool = true
+    //github Bool
+    let githubBool = false
+    if (githubLink[0] === 'https://' || githubLink[0] === 'https://www.') {
+      if (github && githubLink.length === 2) {
+        githubBool = true
       }
     }
-    if (goFundMe && !gofundmeLink[0]) {
-      gofundmeBool = true
+    if (github && !githubLink[0]) {
+      githubBool = true
     }
 
-    if (!goFundMe) {
-      gofundmeBool = true;
+    if (!github) {
+      githubBool = true;
     }
 
-    if (title.length !== 0 && description.length !== 0 && image !== null && discordBool && gofundmeBool) {
+    if (title.length !== 0 && description.length !== 0 && image !== null && discordBool && githubBool) {
       let imageUrl;
       if (image !== project.image) {
         const data = await fetch("/s3url");
@@ -134,7 +134,7 @@ const ProjectEdit = ({ project, toggleEdit }) => {
         image: imageUrl,
         projectCreator: userData._id,
         discord: discord,
-        goFundMe: goFundMe,
+        github: github,
         createdAt: `${project.createdAt}`,
         stars: project.stars,
       };
@@ -160,7 +160,7 @@ const ProjectEdit = ({ project, toggleEdit }) => {
                     image: projectToSave.image,
                     projectCreator: projectToSave.projectCreator,
                     discord: projectToSave.discord,
-                    goFundMe: projectToSave.goFundMe,
+                    github: projectToSave.github,
                     createdAt: Date(projectToSave.createdAt),
                     stars: project.stars,
                   },
@@ -296,11 +296,11 @@ const ProjectEdit = ({ project, toggleEdit }) => {
           <div className="centerContent inputLink">
             <input
               type="text"
-              value={goFundMe}
+              value={github}
               style={inputLink}
               onChange={onChange}
-              name="goFundMe"
-              placeholder="GoFundMe"
+              name="github"
+              placeholder="github"
             />
           </div>
           <div className="centerContent">

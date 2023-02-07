@@ -177,6 +177,10 @@ li {
   list-style-type: none;
 }
 
+#linkContainer {
+  margin-bottom: 15px;
+}
+
 @keyframes animloader {
   0% {
     transform: translate(0px, 0px) scaleX(1);

@@ -32,7 +32,7 @@ export const CREATE_PROJECT = gql`
       image
       projectCreator
       discord
-      goFundMe
+      github
       createdAt
       stars
     }
@@ -48,7 +48,7 @@ export const UPDATE_PROJECT = gql`
       image
       projectCreator
       discord
-      goFundMe
+      github
       createdAt
       stars
     }
@@ -64,7 +64,7 @@ export const SAVE_PROJECT = gql`
       image
       projectCreator
       discord
-      goFundMe
+      github
       createdAt
       stars
     }
@@ -80,7 +80,7 @@ export const UNSAVE_PROJECT = gql`
       image
       projectCreator
       discord
-      goFundMe
+      github
       createdAt
       stars
     }

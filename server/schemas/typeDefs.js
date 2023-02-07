@@ -19,7 +19,7 @@ const typeDefs = gql`
     image: String!
     projectCreator: ID!
     discord: String
-    goFundMe: String
+    github: String
     createdAt: String
     stars: Int
   }
@@ -36,7 +36,7 @@ const typeDefs = gql`
     image: String!
     projectCreator: ID!
     discord: String
-    goFundMe: String
+    github: String
     createdAt: String
     stars: Int
   }

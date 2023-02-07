@@ -28,10 +28,10 @@ const ProjectForm = () => {
         title: "",
         description: "",
         discord: "",
-        goFundMe: "",
+        github: "",
     });
 
-    const { title, description, file, image, discord, goFundMe } = input;
+    const { title, description, file, image, discord, github } = input;
 
     const { loading, data } = useQuery(QUERY_ME);
 
@@ -68,7 +68,7 @@ const ProjectForm = () => {
         event.preventDefault();
 
         const discordLink = discord.split('discord.com')
-        const gofundmeLink = goFundMe.split('gofundme.com')
+        const githubLink = github.split('github.com')
 
         //Discord Bool
         let discordBool = false;
@@ -87,19 +87,19 @@ const ProjectForm = () => {
 
 
 
-        //gofundme Bool
-        let gofundmeBool = false
-        if (gofundmeLink[0] === 'https://' || gofundmeLink[0] === 'https://www.') {
-            if (goFundMe && gofundmeLink.length === 2) {
-                gofundmeBool = true
+        //github Bool
+        let githubBool = false
+        if (githubLink[0] === 'https://' || githubLink[0] === 'https://www.') {
+            if (github && githubLink.length === 2) {
+                githubBool = true
             }
         }
-        if (goFundMe && !gofundmeLink[0]) {
-            gofundmeBool = true
+        if (github && !githubLink[0]) {
+            githubBool = true
         }
 
-        if (!goFundMe) {
-            gofundmeBool = true;
+        if (!github) {
+            githubBool = true;
         }
 
         if (
@@ -108,7 +108,7 @@ const ProjectForm = () => {
             image !== null &&
             file !== null &&
             discordBool &&
-            gofundmeBool
+            githubBool
         ) {
             const data = await fetch("/s3url");
             const url = await data.json();
@@ -129,7 +129,7 @@ const ProjectForm = () => {
                 image: imageUrl,
                 projectCreator: userData._id,
                 discord: discord,
-                goFundMe: goFundMe,
+                github: github,
                 createdAt: `${Date.now()}`,
                 stars: 0,
             };
@@ -171,7 +171,7 @@ const ProjectForm = () => {
                                             image: projectToSave.image,
                                             projectCreator: projectToSave.projectCreator,
                                             discord: projectToSave.discord,
-                                            goFundMe: projectToSave.goFundMe,
+                                            github: projectToSave.github,
                                             createdAt: Date(projectToSave.createdAt),
                                             stars: 0,
                                         },
@@ -246,11 +246,11 @@ const ProjectForm = () => {
                     <div className="centerContent">
                         <input
                             type="text"
-                            value={goFundMe}
+                            value={github}
                             style={inputLink}
                             onChange={onChange}
-                            name="goFundMe"
-                            placeholder="GoFundMe"
+                            name="github"
+                            placeholder="github"
                         />
                     </div>
                     <div className="centerContent">
