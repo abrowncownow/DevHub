@@ -77,8 +77,8 @@ function Signup() {
             />
           </div>
           <div>
-            <button className="btn-success" type="submit">Submit</button>
             <Link to="/login"><button className="btn">Login Page</button></Link>
+            <button className="btn-success" type="submit">Submit</button>
           </div>
         </form>
       </div>
