@@ -13,6 +13,10 @@ body {
   font-family: 'Montserrat', sans-serif;
 }
 
+.hide {
+  display: none;
+}
+
 h1 {
   color: #F0EFE8
 }
@@ -73,6 +77,49 @@ input {
   margin: 20px 5px;
   border-radius: 10px;
 }
+
+
+
+#searchContainer {
+  display: flex;
+  top: 10px;
+  width: 100%;
+  margin-top: 10px;
+  z-index: 1000;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+
+#search {
+  width: 50%;
+  border-radius: 5px;
+  text-align: center;
+  border: 1px solid transparent;
+}
+
+
+.searchBox {
+  width: 100%;
+}
+
+
+.resultBox {
+  width: 50%;
+  position: fixed;
+  left: 25%;
+  z-index: 1000;
+}
+
+.result {
+  margin-top: 1px;
+  background-color: var(--mbc);
+  border-radius: 5px;
+}
+
+
+
+
 
 .btn{
   
