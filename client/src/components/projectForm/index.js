@@ -15,9 +15,11 @@ const inputLink = {
 }
 
 const inputButton = {
-    backgroundColor: 'darkblue',
+    backgroundColor: '#1A1516',
     borderRadius: '5px',
-    color: 'white'
+    color: '#F0EFE8',
+    textAlign: 'center',
+    padding: '5px',
 }
 
 const ProjectForm = () => {
@@ -197,7 +199,7 @@ const ProjectForm = () => {
         <div>
             {SignedIn ? (
                 <form onSubmit={onSubmit} className="content">
-                    <h1>Project</h1>
+                    <h1>Project Details</h1>
                     <div className="centerContent">
                         <input
                             type="text"
@@ -218,7 +220,7 @@ const ProjectForm = () => {
                                 id="imgInput"
                                 accept="image/png image/jpg"
                                 title="image" style={inputStyle} />
-                            <label id="imgInput" htmlFor="imgInput" style={inputButton}>Click me to upload image</label>
+                            <label id="imgInput" htmlFor="imgInput" style={inputButton}>Click to upload image</label>
                         </div>
                         <img alt="" src={image} id="displayImage" />
                     </div>
@@ -253,11 +255,9 @@ const ProjectForm = () => {
                             placeholder="github"
                         />
                     </div>
-                    <div className="centerContent">
-                        <button type="submit" className="btn btn-primary">
+                        <button type="submit" className="btn">
                             Create
                         </button>
-                    </div>
                 </form>
             ) : (
                 <h2>Sign in to create a project</h2>

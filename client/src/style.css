@@ -13,17 +13,39 @@ body {
   font-family: 'Montserrat', sans-serif;
 }
 
+h1 {
+  color: #F0EFE8
+}
+
+form {
+  background: var(--dac);
+  padding: 20px;
+  margin: 5px;
+  border-radius: 10px;
+}
 
 label {
-  width:180px;
-  clear:left;
-  text-align:right;
+  width:110px;
+  clear: left;
+  text-align: right;
   padding-right:10px;
 }
 
 input, label {
   float:left;
-  margin-bottom: 7px;
+}
+
+textarea{
+  width: 90%;
+  height: 125px;
+  padding: 5px;
+  margin-bottom: 10px;
+}
+
+input {
+
+  padding: 7px;
+  margin-bottom: 15px;
 }
 
 #displayImage {
@@ -114,12 +136,12 @@ text-align: center;
 flex-wrap: wrap;
 text-align: center;
 /*border: 1px solid red;*/
-height: 500px;
 }
 
 #imgInput {
 transition: .20s ease-out;
 width: 100%;
+margin-bottom: 15px;
 }
 
 

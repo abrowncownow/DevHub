@@ -1,14 +1,14 @@
-import React, { useState } from 'react';
-import { useMutation, useQuery } from '@apollo/client';
+import React, { useState } from "react";
+import { useMutation } from "@apollo/client";
 import { Link } from "react-router-dom";
-import { LOGIN } from '../utils/mutations';
-import Auth from '../utils/auth';
+import { LOGIN } from "../utils/mutations";
+import Auth from "../utils/auth";
 
 function Login() {
-    const [input, setInput] = useState({ email: '', password: '' })
-    const { email, password } = input
+    const [input, setInput] = useState({ email: "", password: "" });
+    const { email, password } = input;
     const [login, { error }] = useMutation(LOGIN);
-    
+
     const onSubmit = async (event) => {
         event.preventDefault();
 
@@ -19,8 +19,8 @@ function Login() {
             const token = response.data.login.token;
             Auth.login(token);
         } catch (err) {
-            localStorage.removeItem('id_token');
-            setInput({ email: '', password: '' })
+            localStorage.removeItem("id_token");
+            setInput({ email: "", password: "" });
         }
     };
 
@@ -34,13 +34,12 @@ function Login() {
 
     const linkStyle = {
         color: "white",
-        textDecoration: 'none'
-    }
+        textDecoration: "none",
+    };
 
     return (
         <div className="container" style={linkStyle}>
             <div>
-                
                 <h2>Login</h2>
                 <form onSubmit={onSubmit}>
                     <div>
@@ -69,8 +68,13 @@ function Login() {
                         </div>
                     ) : null}
                     <div>
-                        <button className="btn-success" type="submit">Submit</button>
-                        <Link to="/signup"><button className="btn">Signup</button></Link>
+
+                        <Link to="/signup">
+                            <button className="btn">Signup</button>
+                        </Link>
+                        <button className="btn-success" type="submit">
+                            Submit
+                        </button>
                     </div>
                 </form>
             </div>
