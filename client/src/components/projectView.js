@@ -60,16 +60,16 @@ const ProjectView = ({ project, authEditor, toggleEdit }) => {
     discordValue = `https://${project.discord}`;
   }
 
-  //Format go fund me link
-  const gofundmeLink = project.goFundMe.split("gofundme.com");
-  let gofundmeValue;
-  if (gofundmeLink[0] === "https://" || gofundmeLink[0] === "https://www.") {
-    if (project.goFundMe && gofundmeLink.length === 2) {
-      gofundmeValue = project.goFundMe;
+  //Format github link
+  const githubLink = project.github.split("github.com");
+  let githubValue;
+  if (githubLink[0] === "https://" || githubLink[0] === "https://www.") {
+    if (project.github && githubLink.length === 2) {
+      githubValue = project.github;
     }
   }
-  if (project.goFundMe && !gofundmeLink[0]) {
-    gofundmeValue = `https://${project.goFundMe}`;
+  if (project.github && !githubLink[0]) {
+    githubValue = `https://${project.github}`;
   }
 
   async function toggleSave() {
@@ -80,7 +80,7 @@ const ProjectView = ({ project, authEditor, toggleEdit }) => {
       image: project.image,
       projectCreator: project.projectCreator,
       discord: project.discord,
-      goFundMe: project.goFundMe,
+      github: project.github,
       createdAt: `${project.createdAt}`,
       stars: project.stars,
     };
@@ -133,7 +133,7 @@ const ProjectView = ({ project, authEditor, toggleEdit }) => {
       image: project.image,
       projectCreator: project.projectCreator,
       discord: project.discord,
-      goFundMe: project.goFundMe,
+      github: project.github,
       createdAt: `${project.createdAt}`,
       stars: project.stars,
     };
@@ -191,7 +191,7 @@ const ProjectView = ({ project, authEditor, toggleEdit }) => {
               <div>
                 <p>{project.description}</p>
               </div>
-              <div>
+              <div  id="linkContainer">
                 {project.discord ? (
                   <a href={discordValue} target="_blank" rel="noreferrer">
                     Discord Link
@@ -200,9 +200,9 @@ const ProjectView = ({ project, authEditor, toggleEdit }) => {
                   <p></p>
                 )}
                 <p> </p>
-                {project.goFundMe ? (
-                  <a href={gofundmeValue} target="_blank" rel="noreferrer">
-                    GoFundMe Page
+                {project.github ? (
+                  <a href={githubValue} target="_blank" rel="noreferrer">
+                    Github Page
                   </a>
                 ) : (
                   <p></p>

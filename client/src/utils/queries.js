@@ -60,7 +60,7 @@ export const QUERY_PROJECTS = gql `
       image
       projectCreator
       discord
-      goFundMe
+      github
       createdAt
       stars
     }
@@ -76,7 +76,7 @@ export const QUERY_NEW_PROJECTS = gql`
       image
       projectCreator
       discord
-      goFundMe
+      github
       createdAt
       stars
     }
@@ -92,7 +92,7 @@ export const QUERY_POPULAR_PROJECTS = gql`
       image
       projectCreator
       discord
-      goFundMe
+      github
       createdAt
       stars
     }
@@ -108,7 +108,7 @@ export const QUERY_SINGLE_PROJECT = gql`
       image
       projectCreator
       discord
-      goFundMe
+      github
       createdAt
       stars
     }

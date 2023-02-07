@@ -22,7 +22,7 @@ const projectSchema = new Schema({
     type: String,
     default: ''
   },
-  goFundMe: {
+  github: {
     type: String,
     default: ''
   },
