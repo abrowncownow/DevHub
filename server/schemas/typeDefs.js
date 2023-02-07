@@ -44,7 +44,7 @@ const typeDefs = gql`
   type Query {
     project(projectId: ID!): Project
     projects: [Project]
-    newProjects: [Project]
+    savedProjects: [Project]
     popularProjects: [Project]
     user: User
     users: [User]

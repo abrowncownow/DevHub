@@ -12,10 +12,14 @@ const resolvers = {
         projects: async function () {
             return await Project.find();
         },
-        /*
-        newProjects: async () => {
-            return Project.find().sort({ createdAt: -1 });
-        },*/
+
+        savedProjects: async (parent, args, context) => {
+            if (context.user) {
+                const {saved_projects} = await User.findOne({ _id: context.user._id });
+                return await Project.find({ _id: saved_projects })
+            }
+            throw new AuthenticationError('You need to be logged in!');
+        },
         // Need to double check if this sort params is correct
         /*
         popularProjects: async () => {
@@ -29,7 +33,7 @@ const resolvers = {
             }
             throw new AuthenticationError('You need to be logged in!');
         },
-        users: async function() {
+        users: async function () {
             return await User.find()
         },
         singleUser: async function (parent, { userId }) {
@@ -90,13 +94,13 @@ const resolvers = {
             }
             throw new AuthenticationError('You need to be logged in!');
         },
-        deleteProject: async (parent, {projectId}, context) => {
+        deleteProject: async (parent, { projectId }, context) => {
             if (context.user) {
                 try {
                     const projectResponse = await Project.findOneAndDelete({ _id: projectId });
-                    await User.updateMany({created_projects: { $all: projectId}}, {$pull: {created_projects: { $all: projectId}}})
-                    await User.updateMany({saved_projects: { $all: projectId}}, {$pull: {saved_projects: { $all: projectId}}})
-                    await User.findByIdAndUpdate({_id: context.user._id}, {$pull: {saved_projects: projectId}})
+                    await User.updateMany({ created_projects: { $all: projectId } }, { $pull: { created_projects: { $all: projectId } } })
+                    await User.updateMany({ saved_projects: { $all: projectId } }, { $pull: { saved_projects: { $all: projectId } } })
+                    await User.findByIdAndUpdate({ _id: context.user._id }, { $pull: { saved_projects: projectId } })
                     return projectResponse;
                 } catch (err) {
                     console.log(err)

@@ -2,10 +2,16 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Auth from "../utils/auth";
 import { useQuery } from "@apollo/client";
-import { QUERY_ME, QUERY_SINGLE_PROJECT, QUERY_PROJECTS } from "../utils/queries";
+import { QUERY_ME, QUERY_SINGLE_PROJECT, QUERY_PROJECTS , QUERY_SAVED_PROJECTS} from "../utils/queries";
 const SignedIn = Auth.loggedIn() ? true : false;
 
 const SavedProject = () => {
+
+  const {data: savedProjects} = useQuery(QUERY_SAVED_PROJECTS);
+
+  if (savedProjects? true : false) {
+    console.log(savedProjects)
+  }
 
   // const { data: user } = useQuery(QUERY_ME);
   // const checkProj = user?.saved_projects?._id;
