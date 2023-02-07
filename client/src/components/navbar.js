@@ -35,6 +35,7 @@ const Navbar = () => {
             <nav>
                 {SignedIn ? (
                     <section style={sectionStyle}>
+                        <h1 className="header">DevHub</h1>
                         <div style={boxStyle}>
                             <Link style={linkStyle} to="/">Home</Link>
                         </div>
@@ -49,6 +50,7 @@ const Navbar = () => {
                     </section>
                 ) : (
                     <section style={sectionStyle}>
+                        <h1 className="header">DevHub</h1>
                         <div style={boxStyle}>
                             <Link style={linkStyle} to="/">Home</Link>
                         </div>
