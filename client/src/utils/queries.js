@@ -114,3 +114,19 @@ export const QUERY_SINGLE_PROJECT = gql`
     }
   }
 `
+
+export const QUERY_SAVED_PROJECTS = gql` 
+  {
+    savedProjects {
+      _id
+      projectName
+      description
+      image
+      projectCreator
+      discord
+      github
+      createdAt
+      stars
+    }
+  }
+`
