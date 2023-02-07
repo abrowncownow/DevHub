@@ -21,16 +21,24 @@ const Home = () => {
   return (
     <div className="container">
       {projectData ? (
-        <ul>
+        <table>
+          <thead>
+            <tr>
+              <th>Image</th>
+              <th>Project Title</th>
+              <th>Project Description</th>
+            </tr>
+          </thead>
+          <tbody>
           {projectData.map((project) => (
-            <li key={project._id}>
-              <Link to={`/projects/${project._id}`}>
-                <img alt="" src={project.image} id="thumbnail" />
-                <p>{project.projectName}</p>
-              </Link>
-            </li>
+              <tr key={project._id}>
+                  <td><Link to={`/projects/${project._id}`}><img alt="" src={project.image} id="thumbnail" /></Link></td>
+                  <td><Link to={`/projects/${project._id}`}>{project.projectName}</Link></td>
+                  <td><Link to={`/projects/${project._id}`}>{project.description}</Link></td>
+              </tr>    
           ))}
-        </ul>
+          </tbody>
+        </table>
       ) : (
         <div>Loading</div>
       )}

@@ -197,11 +197,27 @@ body{
 
 }
 
-ul {
+table {
+  border-color: grey;
   background: var(--lis);
   padding: 5px;
   margin: 5px;
   border-radius: 10px;
+  width: 75%;
+  max-width: 75%;
+  margin-bottom: 20px;
+  border-spacing: 0;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+table, th, td {
+  border: 1px solid;
+  padding: 5px;
+}
+
+td{
+  padding: 4px;
 }
 
 li {
