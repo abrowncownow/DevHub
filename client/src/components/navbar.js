@@ -1,7 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import Auth from "../utils/auth";
+import SavedProject from "./savedProject";
 const SignedIn = Auth.loggedIn() ? true : false;
+
 if(!SignedIn){
     localStorage.removeItem('id_token');
 }
@@ -41,6 +43,9 @@ const Navbar = () => {
                         </div>
                         <div style={boxStyle}>
                             <Link style={linkStyle} to="/create">Create Project</Link>
+                        </div>
+                        <div>
+                            <SavedProject />
                         </div>
                         <div style={boxStyle}>
                             <a style={linkStyle} href="/" onClick={() => {Auth.logout()} }>

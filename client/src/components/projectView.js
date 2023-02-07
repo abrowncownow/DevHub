@@ -119,7 +119,7 @@ const ProjectView = ({ project, authEditor, toggleEdit }) => {
               ],
             }
           });
-          //console.log(user)
+          console.log(user)
           //console.log(currProject)
         }
       })
