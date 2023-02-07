@@ -215,6 +215,7 @@ li {
   /* position: left;   */
   font-size: x-large;
   padding-right: 10px;
+  color: var(--das);
 }
 
 @keyframes animloader {
