@@ -178,13 +178,13 @@ const ProjectView = ({ project, authEditor, toggleEdit }) => {
   return (
     <div>
       {loading ? (
-        <div>
+        <div className="container">
           <span className="loader">Load&nbsp;ng</span>
         </div>
       ) : (
         <div key={project._id} style={linkStyle}>
           <div className="container">
-            <div>
+            <div id="projectBox">
               <h1>{project.projectName}</h1>
               <h4>Main Developer: {projectCreator.username}</h4>
               <img alt="" src={project.image} id="displayImage" />
@@ -207,6 +207,13 @@ const ProjectView = ({ project, authEditor, toggleEdit }) => {
                 ) : (
                   <p></p>
                 )}
+                {authEditor ? (
+                <button className="btn btn-edit" onClick={toggleEdit}>
+                  Edit Details
+                </button>
+                ) : (
+                <div></div>
+                )}
               </div>
               {SignedIn ? (
                 <div>
@@ -225,13 +232,7 @@ const ProjectView = ({ project, authEditor, toggleEdit }) => {
               )}
             </div>
           </div>
-          {authEditor ? (
-            <button className="btn" onClick={toggleEdit}>
-              Edit Page
-            </button>
-          ) : (
-            <div></div>
-          )}
+
         </div>
       )}
     </div>

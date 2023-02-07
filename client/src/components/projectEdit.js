@@ -14,9 +14,11 @@ const inputLink = {
 }
 
 const inputButton = {
-  backgroundColor: "darkblue",
-  borderRadius: "5px",
-  color: "white",
+  backgroundColor: '#1A1516',
+  borderRadius: '5px',
+  color: '#F0EFE8',
+  textAlign: 'center',
+  padding: '5px',
 };
 
 const ProjectEdit = ({ project, toggleEdit }) => {
@@ -305,7 +307,7 @@ const ProjectEdit = ({ project, toggleEdit }) => {
           </div>
           <div className="centerContent">
             <button className="btn" onClick={toggleEdit}>Cancel</button>
-            <button type="submit" className="btn btn-primary">Update</button>
+            <button type="submit" className="btn btn-success">Update</button>
             <button className="btn btn-danger" onClick={handleDelete}>Delete</button>
           </div>
         </form>

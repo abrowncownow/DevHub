@@ -255,7 +255,7 @@ const ProjectForm = () => {
                             placeholder="github"
                         />
                     </div>
-                        <button type="submit" className="btn">
+                        <button type="submit" className="btn-success">
                             Create
                         </button>
                 </form>
