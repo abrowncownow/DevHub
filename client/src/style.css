@@ -31,7 +31,7 @@ label {
   padding-right:10px;
 }
 
-input, label {
+label {
   float:left;
 }
 
@@ -67,6 +67,13 @@ input {
   float: left;
 }
 
+#projectBox {
+  background: var(--dac);
+  padding: 20px;
+  margin: 20px 5px;
+  border-radius: 10px;
+}
+
 .btn{
   
   border: none;
@@ -99,6 +106,9 @@ input {
     transition: box-shadow 0.2s cubic-bezier(0.4, 0, 1, 1), background-color 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+.btn-edit{
+  background-color: #fcb035;
+}
 .dangerBtn{
   background-color: rgb(244, 67, 54);
   border: none;
@@ -197,10 +207,6 @@ ul {
 li {
   padding: 0;
   list-style-type: none;
-}
-
-#linkContainer {
-  margin-bottom: 15px;
 }
 
 @keyframes animloader {
