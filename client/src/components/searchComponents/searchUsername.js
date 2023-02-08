@@ -1,8 +1,6 @@
-import React, { useState, useEffect } from "react";
-import Auth from "../../utils/auth";
-import { useMutation, useQuery } from "@apollo/client";
-import { QUERY_ME, QUERY_PROJECTS, QUERY_USER } from "../../utils/queries";
-import { Link } from "react-router-dom";
+import React from "react";
+import { useQuery } from "@apollo/client";
+import { QUERY_USER } from "../../utils/queries";
 
 const SearchUsername = ({ projectCreator }) => {
 

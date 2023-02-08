@@ -13,7 +13,8 @@ const resolvers = {
 		savedProjects: async (parent, args, context) => {
 			if (context.user) {
 				const { saved_projects } = await User.findOne({ _id: context.user._id });
-				return await Project.find({ _id: saved_projects })
+				const projectData = await Project.find({ _id: saved_projects })
+				return projectData
 			}
 			throw new AuthenticationError('You need to be logged in!');
 		},
