@@ -282,6 +282,21 @@ table, th, td {
 td{
   padding: 4px;
 }
+a:link{
+  color: var(--lac);
+  text-decoration: none;
+}
+a:visited{
+  color: var(--dac);
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
+
+a:active {
+  text-decoration: underline;
+}
 
 li {
   padding: 0;
@@ -302,10 +317,9 @@ li {
 
 .header {
   font-family: 'Pacifico', cursive;
-  /* position: left;   */
-  font-size: x-large;
   padding-right: 10px;
   color: var(--das);
+  font-size:x-large;
 }
 
 /* The dropdown container */
