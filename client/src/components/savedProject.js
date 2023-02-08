@@ -1,50 +1,19 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import Auth from "../utils/auth";
 import { useQuery } from "@apollo/client";
-import { QUERY_ME, QUERY_SINGLE_PROJECT, QUERY_PROJECTS , QUERY_SAVED_PROJECTS} from "../utils/queries";
+import { QUERY_SAVED_PROJECTS} from "../utils/queries";
 const SignedIn = Auth.loggedIn() ? true : false;
 
 const SavedProject = () => {
 
-  const {data: savedProjects} = useQuery(QUERY_SAVED_PROJECTS);
+  const { data: savedProjects } = useQuery(QUERY_SAVED_PROJECTS);
 
-  if (savedProjects? true : false) {
-    console.log(savedProjects)
+  let savedProjectsInfo
+  if (savedProjects ? true : false) {
+    savedProjectsInfo = savedProjects?.savedProjects || {};
+    // console.log(savedProjects)
   }
-
-  // const { data: user } = useQuery(QUERY_ME);
-  // const checkProj = user?.saved_projects?._id;
-
-  // let saved_projects = [];
-  // let userData;
-  // if (user ? true : false) {
-  //   userData = user?.user || {};
-  //   // console.log(userData);
-
-  //   for (let i=0; i<userData.saved_projects.length; i++){
-  //     saved_projects.push(userData.saved_projects[i]._id)
-  //   };
-  //   console.log(saved_projects);
-  // }
-
-  // const { data: savedProjectData } = useQuery(QUERY_PROJECTS, 
-  //   // {skip: !checkProj},
-  //   {variables: { }});
-
-
-  // // const { loading, data } = useQuery(
-  // //   QUERY_PROJECTS, 
-  // //   {variables: { _id: { $in : saved_projects} } }
-  // //   );
-
-  // let projectData;
-  // console.log(savedProjectData);
-
-  // if (savedProjectData ? true : false) {
-  //   projectData = savedProjectData?.projects || {};
-  //   console.log(projectData);
-  // }
 
   return (
     <div className="dropdown">
@@ -52,20 +21,16 @@ const SavedProject = () => {
         <i className="caret"></i>
       </div>
       <div className="dropdown-content">
-        <a href="#">1</a>
-        <a href="#">2</a>
-        <a href="#">3</a>
+        {savedProjects ? (
+          <div>
+            {savedProjectsInfo.map((project) => (
+            <Link to={`/projects/${project._id}`} key={project._id}>
+              <p>{project.projectName}</p>
+            </Link>
+          ))}
+          </div>
+          ) : (<div>Loading...</div>)}
       </div>
-      {/* <div className="dropdown-content">
-        {projectData.map((project) => (
-          <a key={project._id}>
-            <p>{projectData.projectName}</p>
-          </a>
-        ))}
-      </div> */}
-      {/* {savedProjects ? (
-
-      )} */}
     </div>
   );
 }
