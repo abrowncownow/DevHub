@@ -368,6 +368,11 @@ li {
   border-left: 4px solid transparent;
 }
 
+.noStyle {
+  text-decoration: none;
+  color: black;
+}
+
 @keyframes animloader {
   0% {
     transform: translate(0px, 0px) scaleX(1);

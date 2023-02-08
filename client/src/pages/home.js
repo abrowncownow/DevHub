@@ -35,9 +35,9 @@ const Home = () => {
           <tbody>
             {projectData.map((project) => (
               <tr key={project._id}>
-                <td><Link to={`/projects/${project._id}`}><img alt="" src={project.image} id="thumbnail" /></Link></td>
-                <td><Link to={`/projects/${project._id}`}>{project.projectName}</Link></td>
-                <td><Link to={`/projects/${project._id}`}>{project.description}</Link></td>
+                <td><Link className="noStyle" to={`/projects/${project._id}`}><img alt="" src={project.image} id="thumbnail" /></Link></td>
+                <td><Link className="noStyle" to={`/projects/${project._id}`}>{project.projectName}</Link></td>
+                <td><Link className="noStyle" to={`/projects/${project._id}`}>{project.description}</Link></td>
               </tr>
             ))}
           </tbody>
