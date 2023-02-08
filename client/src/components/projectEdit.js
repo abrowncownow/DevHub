@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useMutation, useQuery } from "@apollo/client";
 import Auth from "../utils/auth";
-import { QUERY_ME, QUERY_PROJECTS, QUERY_USER, QUERY_USERS } from "../utils/queries";
+import { QUERY_ME, QUERY_PROJECTS } from "../utils/queries";
 import { UPDATE_PROJECT, DELETE_PROJECT } from "../utils/mutations";
 import { useNavigate } from "react-router-dom";
 

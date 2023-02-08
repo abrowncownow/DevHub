@@ -1,13 +1,14 @@
-import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import React from "react";
 import Auth from "../utils/auth";
 import { useMutation, useQuery } from "@apollo/client";
-import { QUERY_ME, QUERY_PROJECTS, QUERY_USER, QUERY_SINGLE_PROJECT } from "../utils/queries";
+import { QUERY_ME, QUERY_USER, QUERY_SINGLE_PROJECT } from "../utils/queries";
 import { SAVE_PROJECT, UNSAVE_PROJECT } from "../utils/mutations";
+import { useProjectContext } from "../utils/globalState";
 const SignedIn = Auth.loggedIn() ? true : false;
 
 const ProjectView = ({ project, authEditor, toggleEdit }) => {
 
+  const [state, dispatch] = useProjectContext()
   const creatorId = project.projectCreator;
   const { loading, data: singleUser } = useQuery(
     QUERY_USER,
@@ -35,7 +36,6 @@ const ProjectView = ({ project, authEditor, toggleEdit }) => {
     if (checkProjectArr.length > 0) {
       savedProjectBool = true
     }
-    //console.log(currUser)
   }
 
   //Format discord link
@@ -113,13 +113,19 @@ const ProjectView = ({ project, authEditor, toggleEdit }) => {
               ],
             }
           });
-
-          // console.log(user)
-          //console.log(currProject)
+          dispatch({
+            type: "UPDATE_SAVED_PROJECTS",
+            saved_projects: [
+              ...user.saved_projects,
+              {
+                __typename: "Project",
+                _id: projectToSave._id
+              }
+            ]
+          })
         }
       })
     }
-    window.location.reload();
   }
 
   async function toggleUnSave() {
@@ -167,19 +173,23 @@ const ProjectView = ({ project, authEditor, toggleEdit }) => {
               ],
             }
           });
-          //console.log(user)
-          //console.log(currProject)
+          
+          dispatch({
+            type: "UPDATE_SAVED_PROJECTS",
+            saved_projects: [
+              ...newUserCache
+            ]
+          })
         }
       })
     }
-    window.location.reload();
   }
 
   const descrip = {
     paddingRight: "5%",
     paddingLeft: "5%"
   }
-  
+
   const linkStyle = {
     color: "white",
     textDecoration: "none"

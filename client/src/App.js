@@ -1,20 +1,22 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   ApolloClient,
   InMemoryCache,
   ApolloProvider,
   createHttpLink,
+  useQuery,
 } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Provider } from 'react-redux';
-import store from './utils/store';
 import Home from './pages/home';
 import Login from './components/login';
 import CreateProject from './pages/createProject';
 import Navbar from './components/navbar';
 import Signup from './components/signup';
 import SingleProject from './pages/singleProject';
+import { ProjectProvider } from './utils/globalState';
+import { QUERY_ME } from './utils/queries';
 
 // Construct our main GraphQL API endpoint
 const httpLink = createHttpLink({
@@ -40,12 +42,15 @@ const client = new ApolloClient({
   cache: new InMemoryCache(),
 });
 
+
+
+
 function App() {
   return (
     <ApolloProvider client={client}>
       <Router>
         <div>
-          <Provider store={store}>
+          <ProjectProvider>
             <Navbar />
             <Routes>
               <Route
@@ -73,7 +78,7 @@ function App() {
                 element={<h1>Not Found</h1>}
               />
             </Routes>
-          </Provider>
+          </ProjectProvider>
         </div>
       </Router>
     </ApolloProvider>
