@@ -328,7 +328,6 @@ li {
   display: none;
   position: absolute;
   background-color: #f9f9f9;
-  /* margin-top: 100%; */
   min-width: 160px;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   z-index: 1001;
@@ -338,7 +337,7 @@ li {
 .dropdown-content a {
   float: none;
   color: black;
-  padding: 0px 16px;
+  padding: 1px 16px;
   text-decoration: none;
   display: block;
   text-align: left;

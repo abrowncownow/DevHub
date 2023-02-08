@@ -124,6 +124,7 @@ const ProjectView = ({ project, authEditor, toggleEdit }) => {
         }
       })
     }
+    window.location.reload();
   }
   async function toggleUnSave() {
     const projectToSave = {
@@ -173,6 +174,7 @@ const ProjectView = ({ project, authEditor, toggleEdit }) => {
         }
       })
     }
+    window.location.reload();
   }
 
   return (
