@@ -20,6 +20,7 @@ const resolvers = {
             }
             throw new AuthenticationError('You need to be logged in!');
         },
+        
         // Need to double check if this sort params is correct
         /*
         popularProjects: async () => {

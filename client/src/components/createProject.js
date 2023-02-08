@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useMutation, useQuery } from "@apollo/client";
-import Auth from "../../utils/auth";
-import { QUERY_ME, QUERY_PROJECTS } from "../../utils/queries";
-import { CREATE_PROJECT } from "../../utils/mutations";
+import Auth from "../utils/auth";
+import { QUERY_ME, QUERY_PROJECTS } from "../utils/queries";
+import { CREATE_PROJECT } from "../utils/mutations";
 import * as mongoose from "mongoose";
 import { useNavigate } from "react-router-dom";
 
