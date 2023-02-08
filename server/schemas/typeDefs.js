@@ -60,7 +60,6 @@ const typeDefs = gql`
     unSaveProject(project: ProjectInput): Project
     deleteProject(projectId: ID!): Project
   }
-
 `;
 
 module.exports = typeDefs
