@@ -51,7 +51,7 @@ export const QUERY_USER = gql`
   }
 `;
 
-export const QUERY_PROJECTS = gql `
+export const QUERY_PROJECTS = gql`
   {
     projects {
       _id

@@ -4,7 +4,7 @@ import ProjectForm from "../components/createProject";
 const CreateProject = () => {
   return (
     <div className="container">
-        <ProjectForm/>
+      <ProjectForm />
     </div>
   );
 };

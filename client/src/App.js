@@ -16,7 +16,6 @@ import Navbar from './components/navbar';
 import Signup from './components/signup';
 import SingleProject from './pages/singleProject';
 
-
 // Construct our main GraphQL API endpoint
 const httpLink = createHttpLink({
   uri: '/graphql',

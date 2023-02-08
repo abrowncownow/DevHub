@@ -5,7 +5,7 @@ import { useMutation, useQuery } from "@apollo/client";
 import { QUERY_ME, QUERY_PROJECTS } from "../utils/queries";
 import SearchBar from "../components/searchbar";
 const SignedIn = Auth.loggedIn() ? true : false;
-//comment
+
 const Home = () => {
   const { loading, data } = useQuery(QUERY_PROJECTS);
 
@@ -16,13 +16,12 @@ const Home = () => {
     //console.log(projectData)
   }
 
-  useEffect(() => {
+  useEffect(() => { }, [])
 
-  }, [])
   return (
     <div className="container">
       <div id="searchContainer">
-        <SearchBar/>
+        <SearchBar />
       </div>
       {projectData ? (
         <table>
@@ -36,9 +35,9 @@ const Home = () => {
           <tbody>
             {projectData.map((project) => (
               <tr key={project._id}>
-                <td><Link to={`/projects/${project._id}`}><img alt="" src={project.image} id="thumbnail" /></Link></td>
-                <td><Link to={`/projects/${project._id}`}>{project.projectName}</Link></td>
-                <td><Link to={`/projects/${project._id}`}>{project.description}</Link></td>
+                <td><Link className="noStyle" to={`/projects/${project._id}`}><img alt="" src={project.image} id="thumbnail" /></Link></td>
+                <td><Link className="noStyle" to={`/projects/${project._id}`}>{project.projectName}</Link></td>
+                <td><Link className="noStyle" to={`/projects/${project._id}`}>{project.description}</Link></td>
               </tr>
             ))}
           </tbody>

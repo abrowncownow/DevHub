@@ -5,81 +5,81 @@ import { LOGIN } from "../utils/mutations";
 import Auth from "../utils/auth";
 
 function Login() {
-    const [input, setInput] = useState({ email: "", password: "" });
-    const { email, password } = input;
-    const [login, { error }] = useMutation(LOGIN);
+	const [input, setInput] = useState({ email: "", password: "" });
+	const { email, password } = input;
+	const [login, { error }] = useMutation(LOGIN);
 
-    const onSubmit = async (event) => {
-        event.preventDefault();
+	const onSubmit = async (event) => {
+		event.preventDefault();
 
-        try {
-            const response = await login({
-                variables: { email, password },
-            });
-            const token = response.data.login.token;
-            Auth.login(token);
-        } catch (err) {
-            localStorage.removeItem("id_token");
-            setInput({ email: "", password: "" });
-        }
-    };
+		try {
+			const response = await login({
+				variables: { email, password },
+			});
+			const token = response.data.login.token;
+			Auth.login(token);
+		} catch (err) {
+			localStorage.removeItem("id_token");
+			setInput({ email: "", password: "" });
+		}
+	};
 
-    const onChange = (event) => {
-        const { name, value } = event.target;
-        setInput({
-            ...input,
-            [name]: value,
-        });
-    };
+	const onChange = (event) => {
+		const { name, value } = event.target;
+		setInput({
+			...input,
+			[name]: value,
+		});
+	};
 
-    const linkStyle = {
-        color: "white",
-        textDecoration: "none",
-    };
+	const linkStyle = {
+		color: "white",
+		textDecoration: "none",
+	};
 
-    return (
-        <div className="container" style={linkStyle}>
-            <div>
-                <h2>Login</h2>
-                <form onSubmit={onSubmit}>
-                    <div>
-                        <label htmlFor="email">Email address:</label>
-                        <input
-                            placeholder="email"
-                            name="email"
-                            type="email"
-                            value={email}
-                            onChange={onChange}
-                        />
-                    </div>
-                    <div>
-                        <label htmlFor="pwd">Password:</label>
-                        <input
-                            placeholder="******"
-                            name="password"
-                            type="password"
-                            value={password}
-                            onChange={onChange}
-                        />
-                    </div>
-                    {error ? (
-                        <div>
-                            <p>Login Failed</p>
-                        </div>
-                    ) : null}
-                    <div>
+	return (
+		<div className="container" style={linkStyle}>
+			<div>
+				<h2>Login</h2>
+				<form onSubmit={onSubmit}>
+					<div>
+						<label htmlFor="email">Email address:</label>
+						<input
+							placeholder="email"
+							name="email"
+							type="email"
+							value={email}
+							onChange={onChange}
+						/>
+					</div>
+					<div>
+						<label htmlFor="pwd">Password:</label>
+						<input
+							placeholder="******"
+							name="password"
+							type="password"
+							value={password}
+							onChange={onChange}
+						/>
+					</div>
+					{error ? (
+						<div>
+							<p>Login Failed</p>
+						</div>
+					) : null}
+					<div>
 
-                        <Link to="/signup">
-                            <button className="btn">Signup</button>
-                        </Link>
-                        <button className="btn-success" type="submit">
-                            Submit
-                        </button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    );
+						<Link to="/signup">
+							<button className="btn">Signup</button>
+						</Link>
+						<button className="btn-success" type="submit">
+							Submit
+						</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	);
 }
 
 export default Login;

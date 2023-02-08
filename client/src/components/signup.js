@@ -18,14 +18,14 @@ function Signup() {
           password: password
         },
       });
+
       const token = response.data.addUser.token;
       Auth.login(token);
+
     } catch (err) {
       localStorage.removeItem('id_token');
       setInput({ username: '', email: '', password: '' })
     }
-
-
   };
 
   const onChange = (event) => {

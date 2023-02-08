@@ -16,12 +16,10 @@ const ProjectView = ({ project, authEditor, toggleEdit }) => {
     }
   );
 
-  const { data } = useQuery(QUERY_ME);
-
   let savedProjectBool = false;
 
+  const { data } = useQuery(QUERY_ME);
   const [saveProject] = useMutation(SAVE_PROJECT)
-
   const [unSaveProject] = useMutation(UNSAVE_PROJECT)
 
   let projectCreator;
@@ -29,8 +27,6 @@ const ProjectView = ({ project, authEditor, toggleEdit }) => {
     projectCreator = singleUser?.singleUser || {};
     //console.log(project)
   }
-
-
 
   let currUser;
   if (data ? true : false) {
@@ -42,12 +38,6 @@ const ProjectView = ({ project, authEditor, toggleEdit }) => {
     //console.log(currUser)
   }
 
-
-  const linkStyle = {
-    color: "white",
-    textDecoration: "none",
-  };
-
   //Format discord link
   const discordLink = project.discord.split("discord.com");
   let discordValue;
@@ -56,6 +46,7 @@ const ProjectView = ({ project, authEditor, toggleEdit }) => {
       discordValue = project.discord;
     }
   }
+
   if (project.discord && !discordLink[0]) {
     discordValue = `https://${project.discord}`;
   }
@@ -68,6 +59,7 @@ const ProjectView = ({ project, authEditor, toggleEdit }) => {
       githubValue = project.github;
     }
   }
+
   if (project.github && !githubLink[0]) {
     githubValue = `https://${project.github}`;
   }
@@ -92,6 +84,7 @@ const ProjectView = ({ project, authEditor, toggleEdit }) => {
         variables: { project: projectToSave },
         update: (cache) => {
           const { user } = cache.readQuery({ query: QUERY_ME });
+
           const currProject = cache.readQuery({ query: QUERY_SINGLE_PROJECT }, { variables: { projectId: project._id } })
           cache.writeQuery({
             query: QUERY_ME,
@@ -108,6 +101,7 @@ const ProjectView = ({ project, authEditor, toggleEdit }) => {
               },
             },
           });
+
           cache.writeQuery({
             query: QUERY_SINGLE_PROJECT,
             data: {
@@ -119,12 +113,15 @@ const ProjectView = ({ project, authEditor, toggleEdit }) => {
               ],
             }
           });
-          console.log(user)
+
+          // console.log(user)
           //console.log(currProject)
         }
       })
     }
+    window.location.reload();
   }
+
   async function toggleUnSave() {
     const projectToSave = {
       _id: project._id,
@@ -144,6 +141,7 @@ const ProjectView = ({ project, authEditor, toggleEdit }) => {
         variables: { project: projectToSave },
         update: (cache) => {
           const { user } = cache.readQuery({ query: QUERY_ME });
+
           const newUserCache = user.saved_projects.filter((userSavedProject) => projectToSave._id !== userSavedProject._id)
           const currProject = cache.readQuery({ query: QUERY_SINGLE_PROJECT }, { variables: { projectId: project._id } })
           cache.writeQuery({
@@ -157,6 +155,7 @@ const ProjectView = ({ project, authEditor, toggleEdit }) => {
               },
             },
           });
+
           cache.writeQuery({
             query: QUERY_SINGLE_PROJECT,
             data: {
@@ -173,7 +172,18 @@ const ProjectView = ({ project, authEditor, toggleEdit }) => {
         }
       })
     }
+    window.location.reload();
   }
+
+  const descrip = {
+    paddingRight: "5%",
+    paddingLeft: "5%"
+  }
+  
+  const linkStyle = {
+    color: "white",
+    textDecoration: "none"
+  };
 
   return (
     <div>
@@ -187,11 +197,11 @@ const ProjectView = ({ project, authEditor, toggleEdit }) => {
             <div id="projectBox">
               <h1>{project.projectName}</h1>
               <h4>Main Developer: {projectCreator.username}</h4>
-              <img alt="" src={project.image} id="displayImage" />
-              <div>
+              <img alt="user uploaded project concept" src={project.image} id="displayImage" />
+              <div style={descrip}>
                 <p>{project.description}</p>
               </div>
-              <div  id="linkContainer">
+              <div id="linkContainer">
                 {project.discord ? (
                   <a href={discordValue} target="_blank" rel="noreferrer">
                     Discord Link
@@ -207,12 +217,13 @@ const ProjectView = ({ project, authEditor, toggleEdit }) => {
                 ) : (
                   <p></p>
                 )}
+                <p> </p>
                 {authEditor ? (
-                <button className="btn btn-edit" onClick={toggleEdit}>
-                  Edit Details
-                </button>
+                  <button className="btn btn-edit" onClick={toggleEdit}>
+                    Edit Details
+                  </button>
                 ) : (
-                <div></div>
+                  <div></div>
                 )}
               </div>
               {SignedIn ? (
@@ -232,7 +243,6 @@ const ProjectView = ({ project, authEditor, toggleEdit }) => {
               )}
             </div>
           </div>
-
         </div>
       )}
     </div>
