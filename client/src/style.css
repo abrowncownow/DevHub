@@ -6,7 +6,6 @@
   --das: #1A1516;
  }
 
-
 body {    
   margin: 0 !important;
   padding: 0 !important;
@@ -78,8 +77,7 @@ input {
   border-radius: 10px;
 }
 
-
-
+/* Search bar CSS */
 #searchContainer {
   display: flex;
   top: 10px;
@@ -91,7 +89,6 @@ input {
   align-items: center;
 }
 
-
 #search {
   width: 50%;
   border-radius: 5px;
@@ -99,12 +96,10 @@ input {
   border: 1px solid transparent;
 }
 
-
 .searchBox {
   width: 100%;
   margin-top: 12.5px;
 }
-
 
 .resultBox {
   width: 50%;
@@ -132,9 +127,7 @@ input {
   color: black;
 }
 
-
-
-
+/* Button styling */
 .btn{
   
   border: none;
@@ -170,6 +163,7 @@ input {
 .btn-edit{
   background-color: #fcb035;
 }
+
 .dangerBtn{
   background-color: rgb(244, 67, 54);
   border: none;
@@ -190,6 +184,7 @@ input {
   cursor: pointer;
 }
 
+/* General container CSS */
 .container {
 text-align: center;
 width: 100%;
@@ -209,17 +204,18 @@ text-align: center;
 /*border: 1px solid red;*/
 }
 
+/* Image CSS */
 #imgInput {
 transition: .20s ease-out;
 width: 100%;
 margin-bottom: 15px;
 }
 
-
 #imgInput:hover {
 opacity: 80%;
 transition: .20s ease-in;
 }
+
 .loader {
   color: #FFF;
   position: relative;
@@ -230,6 +226,7 @@ transition: .20s ease-in;
   letter-spacing: 4px;
   box-sizing: border-box;
 }
+
 .loader::before {
   content: '';  
   position: absolute;
@@ -241,6 +238,7 @@ transition: .20s ease-in;
   box-sizing: border-box;
   animation: animloader1 1s linear infinite alternate;
 }
+
 .loader::after {
   content: '';  
   width: 10px;
@@ -253,11 +251,13 @@ transition: .20s ease-in;
   box-sizing: border-box;
   animation: animloader 1s linear infinite alternate;
 }
+
 body{
   background: var(--das);
 
 }
 
+/* Homepage table CSS */
 table {
   border-color: grey;
   background: var(--lis);
@@ -290,6 +290,7 @@ li {
   margin-bottom: 15px;
 }
 
+/* Web logo CSS */
 @font-face {
   font-family: 'Pacifico';
   font-style: normal;
