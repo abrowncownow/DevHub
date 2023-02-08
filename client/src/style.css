@@ -114,12 +114,12 @@ input {
   transition: .1s ease-out;
   background-color: var(--mbc);
   text-decoration: none;
-  color: white;
+  color: var(--lis);
   border-radius: 5px;
 }
 
 .result:hover {
-  background-color: var(--dac);
+  background-color: var(--das);
   transition: .1s ease-in;
 }
 
