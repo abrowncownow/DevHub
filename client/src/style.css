@@ -75,6 +75,7 @@ input {
   padding: 20px;
   margin: 20px 5px;
   border-radius: 10px;
+  max-width: 550px;
 }
 
 /* Search bar CSS */
@@ -162,6 +163,7 @@ input {
 
 .btn-edit{
   background-color: #fcb035;
+
 }
 
 .dangerBtn{
@@ -287,7 +289,7 @@ li {
 }
 
 #linkContainer {
-  margin-bottom: 15px;
+  margin-bottom: 10px;
 }
 
 /* Web logo CSS */

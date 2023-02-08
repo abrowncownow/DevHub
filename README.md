@@ -31,7 +31,7 @@ The website was inspired due to the massive layoffs that the industry had recent
 - [Questions](#questions)
 
 ## Usage
-You can visit the [website](https://devhub-uw.herokuapp.com/) and create an account to get started. The front page will show the new project as well as the most popular projects.
+You can visit the [website](https://devhub-uw.herokuapp.com/) and create an account to get started. The front page currently shows all available projects.
 
 ## Technologies Used
 - [@apollo/server](https://www.npmjs.com/package/@apollo/server): npm package
@@ -42,6 +42,7 @@ You can visit the [website](https://devhub-uw.herokuapp.com/) and create an acco
 - [Node.js](https://nodejs.org/en/about/)
 - [JSON Web Token](https://jwt.io/)
 - [jwt-decode](https://www.npmjs.com/package/jwt-decode): helps decode JWTs token which are Base64Url encoded.
+- [Amazon S3](https://aws.amazon.com/s3/): image storing
 
 ## Questions
 Please contact use below for further questions:

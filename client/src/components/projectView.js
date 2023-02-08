@@ -38,11 +38,6 @@ const ProjectView = ({ project, authEditor, toggleEdit }) => {
     //console.log(currUser)
   }
 
-  const linkStyle = {
-    color: "white",
-    textDecoration: "none",
-  };
-
   //Format discord link
   const discordLink = project.discord.split("discord.com");
   let discordValue;
@@ -180,6 +175,16 @@ const ProjectView = ({ project, authEditor, toggleEdit }) => {
     window.location.reload();
   }
 
+  const descrip = {
+    paddingRight: "5%",
+    paddingLeft: "5%"
+  }
+  
+  const linkStyle = {
+    color: "white",
+    textDecoration: "none"
+  };
+
   return (
     <div>
       {loading ? (
@@ -193,7 +198,7 @@ const ProjectView = ({ project, authEditor, toggleEdit }) => {
               <h1>{project.projectName}</h1>
               <h4>Main Developer: {projectCreator.username}</h4>
               <img alt="user uploaded project concept" src={project.image} id="displayImage" />
-              <div>
+              <div style={descrip}>
                 <p>{project.description}</p>
               </div>
               <div id="linkContainer">
@@ -212,6 +217,7 @@ const ProjectView = ({ project, authEditor, toggleEdit }) => {
                 ) : (
                   <p></p>
                 )}
+                <p> </p>
                 {authEditor ? (
                   <button className="btn btn-edit" onClick={toggleEdit}>
                     Edit Details
