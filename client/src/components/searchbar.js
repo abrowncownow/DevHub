@@ -15,7 +15,7 @@ const SearchBar = () => {
 
 	if (projects ? true : false) {
 		allProjectData = projects?.projects || {}
-		//console.log(allProjectData)
+		// console.log(allProjectData)
 	}
 
 	function clearSearch(event) {
@@ -31,7 +31,7 @@ const SearchBar = () => {
 			let check = ''
 
 			for (let i = 0; i < input.length; i++) {
-				check += project.projectName[i]
+				check += project.projectName[i].toLowerCase();
 			}
 
 			const isVisible = check === input
