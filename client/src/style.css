@@ -108,17 +108,29 @@ input {
 
 .resultBox {
   width: 50%;
-  position: fixed;
+  position: absolute;
   left: 25%;
   z-index: 1000;
 }
 
 .result {
   margin-top: 1px;
+  transition: .1s ease-out;
   background-color: var(--mbc);
+  text-decoration: none;
+  color: white;
   border-radius: 5px;
 }
 
+.result:hover {
+  background-color: var(--dac);
+  transition: .1s ease-in;
+}
+
+.linkStyle {
+  text-decoration: none;
+  color: black;
+}
 
 
 
