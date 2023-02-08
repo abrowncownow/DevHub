@@ -16,7 +16,7 @@
 
 This is a website where developers can visit to browse, find inspiration and collaborate with other developers on projects that are posted. The creator of the project will be able to post details of their project such as a photo, description, link to their discord and crowdfunding pages. The creator of the project will first be able to create a project details page and edit the page later.
 
-The website was inspired due to the massive layoffs that the industry had recently faced. We wanted somewhere developers could come together to work on projects to keep motivation, morale and the pursuit of self-betterment high. For future development, we are hoping to implement more quality of life features.
+The website was inspired due to the massive layoffs that the industry had recently faced. We wanted somewhere developers could come together to work on projects to keep motivation, morale high and the pursuit of self-betterment. For future development, we are hoping to implement more quality of life features.
 
 ### Creators
 - Alex Brown
@@ -31,7 +31,7 @@ The website was inspired due to the massive layoffs that the industry had recent
 - [Questions](#questions)
 
 ## Usage
-You can visit the [website]() and create an account to get started. The front page will show the new project as well as the most popular projects.
+You can visit the [website](https://devhub-uw.herokuapp.com/) and create an account to get started. The front page will show the new project as well as the most popular projects.
 
 ## Technologies Used
 - [@apollo/server](https://www.npmjs.com/package/@apollo/server): npm package

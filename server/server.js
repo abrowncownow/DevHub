@@ -31,7 +31,6 @@ app.get('/s3url', async (req, res) => {
   res.json(url)
 })
 
-
 const startApolloServer = async (typeDefs, resolvers) => {
   await server.start();
   server.applyMiddleware({ app });
