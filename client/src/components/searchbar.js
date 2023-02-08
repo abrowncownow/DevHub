@@ -23,6 +23,7 @@ const SearchBar = () => {
 			setProjectData([])
 		}, 150)
 	}
+
 	function onChange(event) {
 		const input = event.target.value.toLowerCase()
 
@@ -44,8 +45,6 @@ const SearchBar = () => {
 
 		setProjectData(searchData)
 	}
-
-
 
 	return (
 		<div className="searchBox" onBlur={clearSearch}>

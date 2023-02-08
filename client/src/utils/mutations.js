@@ -22,7 +22,6 @@ export const LOGIN = gql`
   }
 `;
 
-
 export const CREATE_PROJECT = gql`
   mutation createProject($project: ProjectInput!) {
     createProject(project: $project) {
