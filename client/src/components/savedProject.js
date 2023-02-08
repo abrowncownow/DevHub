@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import Auth from "../utils/auth";
 import { useQuery } from "@apollo/client";
-import { QUERY_SAVED_PROJECTS} from "../utils/queries";
+import { QUERY_SAVED_PROJECTS } from "../utils/queries";
 const SignedIn = Auth.loggedIn() ? true : false;
 
 const SavedProject = () => {
