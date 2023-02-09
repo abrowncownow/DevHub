@@ -9,7 +9,6 @@ import Auth from "../utils/auth";
 const SignedIn = Auth.loggedIn() ? true : false;
 
 //data prop
-
 const SingleProject = () => {
   let [authEditor, toggleAuthEditor] = useState(false);
   const [editMode, toggleEditMode] = useState(false);
@@ -36,6 +35,7 @@ const SingleProject = () => {
   if (data && user ? true : false) {
     checkUsers();
   }
+
   async function checkUsers() {
     if (project.projectCreator === userData._id) {
       authEditor = true;
@@ -44,7 +44,6 @@ const SingleProject = () => {
   }
 
   function toggleEdit() {
-
     toggleEditMode(!editMode)
   }
 
