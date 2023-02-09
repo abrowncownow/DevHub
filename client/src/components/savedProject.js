@@ -14,6 +14,7 @@ const SavedProject = () => {
   let savedProjectsInfo
   if (savedProjects ? true : false) {
     savedProjectsInfo = savedProjects?.savedProjects || {};
+    //console.log(savedProjects)
   }
 
   useEffect(()=> {

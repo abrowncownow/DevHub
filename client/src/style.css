@@ -259,6 +259,16 @@ body{
 
 }
 
+.projectLink {
+  color: white;
+  transition: .1s ease-out;
+}
+
+.projectLink:hover {
+  color: var(--mbc);
+  transition: .1s ease-in;
+}
+
 /* Homepage table CSS */
 table {
   border-color: grey;
@@ -278,6 +288,7 @@ table, th, td {
   border: 1px solid;
   padding: 5px;
 }
+
 
 td{
   padding: 4px;

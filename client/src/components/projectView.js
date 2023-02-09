@@ -6,6 +6,7 @@ import { SAVE_PROJECT, UNSAVE_PROJECT } from "../utils/mutations";
 import { useProjectContext } from "../utils/globalState";
 const SignedIn = Auth.loggedIn() ? true : false;
 
+
 const ProjectView = ({ project, authEditor, toggleEdit }) => {
 
   const [state, dispatch] = useProjectContext()
@@ -173,7 +174,7 @@ const ProjectView = ({ project, authEditor, toggleEdit }) => {
               ],
             }
           });
-          
+
           dispatch({
             type: "UPDATE_SAVED_PROJECTS",
             saved_projects: [
@@ -213,16 +214,18 @@ const ProjectView = ({ project, authEditor, toggleEdit }) => {
               </div>
               <div id="linkContainer">
                 {project.discord ? (
-                  <a href={discordValue} target="_blank" rel="noreferrer">
-                    Discord Link
-                  </a>
+                  <div>
+                    <a href={discordValue} target="_blank">
+                      <div className="projectLink" >Discord Link</div>
+                    </a>
+                  </div>
                 ) : (
                   <p></p>
                 )}
                 <p> </p>
                 {project.github ? (
                   <a href={githubValue} target="_blank" rel="noreferrer">
-                    Github Page
+                    <div className="projectLink">Github Page</div>
                   </a>
                 ) : (
                   <p></p>

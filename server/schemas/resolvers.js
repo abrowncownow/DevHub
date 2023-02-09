@@ -8,7 +8,7 @@ const resolvers = {
 			return await Project.findOne({ _id: projectId })
 		},
 		projects: async function () {
-			return await Project.find();
+			return await Project.find().sort({ createdAt: -1 });
 		},
 		savedProjects: async (parent, args, context) => {
 			if (context.user) {
