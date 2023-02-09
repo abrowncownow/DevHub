@@ -13,25 +13,8 @@ const Home = () => {
 
   if (data ? true : false) {
     projectData = data?.projects || {};
-    console.log(projectData)
-    /*
-    const  arr = projectData.sort(function(a, b) {
-      const dateA = a.createdAt
-      const dateB = b.createdAt
-      if (dateA > dateB) {
-        return a;
-      }
-      if (dateA < dateB) {
-        return b;
-      }
-  
-    });*/
-
-    //console.log(arr)
+    //console.log(projectData)
   }
-
-
-  console.log(projectData)
 
   useEffect(() => { }, [])
 
