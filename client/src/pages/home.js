@@ -13,7 +13,7 @@ const Home = () => {
 
   if (data ? true : false) {
     projectData = data?.projects || {};
-    console.log(projectData)
+    //console.log(projectData)
   }
 
   useEffect(() => { }, [])
