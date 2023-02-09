@@ -123,11 +123,6 @@ input {
   transition: .1s ease-in;
 }
 
-.linkStyle {
-  text-decoration: none;
-  color: black;
-}
-
 /* Button styling */
 .btn{
   
@@ -282,12 +277,14 @@ table, th, td {
 td{
   padding: 4px;
 }
+
 a:link{
   color: var(--lac);
   text-decoration: none;
 }
+
 a:visited{
-  color: var(--dac);
+  color: var(--das);
   text-decoration: none;
 }
 a:hover {
@@ -383,6 +380,11 @@ li {
 }
 
 .noStyle {
+  text-decoration: none;
+  color: black;
+}
+
+.linkStyle {
   text-decoration: none;
   color: black;
 }
