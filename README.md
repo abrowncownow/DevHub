@@ -18,6 +18,8 @@ This is a website where developers can visit to browse, find inspiration and col
 
 The website was inspired due to the massive layoffs that the industry had recently faced. We wanted somewhere developers could come together to work on projects to keep motivation, morale high and the pursuit of self-betterment. For future development, we are hoping to implement more quality of life features.
 
+![homepage](/assets/devhub-homepage.jpg)
+
 ### Creators
 - Alex Brown
 - Joey Sanchez

@@ -17,7 +17,7 @@ const SavedProject = () => {
     //console.log(savedProjects)
   }
 
-  useEffect(()=> {
+    useEffect(()=> {
     refetch()
   })
 
