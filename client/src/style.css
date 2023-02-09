@@ -239,7 +239,7 @@ a:link{
 }
 
 a:visited{
-  color: var(--dac);
+  color: var(--das);
   text-decoration: none;
 }
 a:hover {
@@ -300,7 +300,7 @@ li {
 }
 
 .result:hover {
-  background-color: var(--das);
+  background-color: var(--dac);
   transition: .1s ease-in;
 }
 
